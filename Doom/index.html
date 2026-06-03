@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TKPJD4RG');</script>
+<!-- End Google Tag Manager -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1D8RGMK92S');
+</script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doom Emulator</title>
+  <!-- There are no bugs in this code...just demons. -->
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Experience the classic Doom game in your browser using js-dos, Bun, and modern web technologies.">
+  <meta name="author" content="lelbois">
+  <meta name="keywords" content="Doom Emulator, js-dos, browser games, Doom II, Final Doom, Bun">
+  <meta name="theme-color" content="#007bff">
+  <link href="./bootstrap.min.css" rel="stylesheet">
+  <link href="./demons/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <style>
+    body {
+      background-color: #f8f9fa; /* Light, professional background */
+      color: #212529; /* Text color for readability */
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    .header {
+      margin-top: 30px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      color: #007bff;
+    }
+    .details {
+      text-align: left;
+      margin-top: 30px;
+    }
+    .btn-start {
+      margin-top: 20px;
+      font-size: 1.25rem;
+    }
+    .example-image {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKPJD4RG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <div class="container">
+   <img src="./demons/absolute_kick_a_bad_a.png" alt="Doomguy Face" />
+    <header class="header">
+      <h1>Doom Emulator <i class="bi bi-controller"></i></h1>
+      <p>Experience the classic Doom game directly in your browser!</p>
+    </header>
+    <section class="details">
+      <h3>About the Emulator <i class="bi bi-journal-bookmark-fill"></i></h3>
+      <p>This project uses <strong>js-dos</strong> to emulate the original Doom experience right in your browser. The setup was created using the <code>bun create dosbox</code> template, making it efficient and modern.</p>
+      <h3>How It Works <i class="bi bi-code"></i></h3>
+      <ul>
+        <li><strong><i class="bi bi-terminal-fill"></i> js-dos:</strong> A powerful JavaScript-based DOS emulator that allows classic games to run in the browser.</li>
+        <li><strong><i class="bi bi-stack"></i> Bun:</strong> The project uses <code>bun</code> for managing the runtime and build process, ensuring top-notch performance.</li>
+        <li><strong><i class="bi bi-box-seam-fill"></i> NPM:</strong> The classic package manager. Used in conjunction with Bun in this project.</li>
+        <li><strong><i class="bi bi-bootstrap-fill"></i> Bootstrap:</strong> You know how the website looks so nice? Bootstrap utility classes of course.</li>
+        <li><strong><i class="bi bi-brush-fill"></i> Bootstrap Icons:</strong> All those icons all over the place are from- yep you guessed it, Bootstrap Icons.</li>
+    </section>
+    <a href="./dos.html" class="btn btn-primary btn-start"><i class="bi bi-play-fill"></i> Launch Doom Emulator</a>
+    <a href="./doomII/index.html" class="btn btn-primary btn-start"><i class="bi bi-play-fill"></i> Launch Doom II Emulator</a>
+    <a href="./finaldoom/index.html" class="btn btn-primary btn-start"><i class="bi bi-play-fill"></i> Launch Final Doom Emulator</a>  
+</div>
+<div class="container">
+    <div class="instructions-container">
+      <h2>Game Controls <i class="bi bi-dpad-fill"></i></h2>
+      <div class="instruction">To move around, use the <span class="highlight">Arrow Keys</span></div>
+      <div class="instruction">To shoot, press the <span class="highlight">Ctrl Key</span></div>
+    </div>
+<div class="container mt-5">
+        <h1 class="text-center">Cheat Codes <i class="bi bi-key-fill"></i></h1>
+        <div class="list-group">
+            <div class="list-group-item">
+                <h5 class="mb-1">IDDQD</h5>
+                <p class="mb-1">God Mode - Makes the player invincible to damage.</p>
+            </div>
+            <div class="list-group-item">
+                <h5 class="mb-1">IDKFA</h5>
+                <p class="mb-1">All Weapons, Full Ammo, and All Keys - Grants all weapons, full ammunition, and all keys.</p>
+            </div>
+            <div class="list-group-item">
+                <h5 class="mb-1">IDCLIP</h5>
+                <p class="mb-1">No Clip Mode - In Final Doom and Doom II (at least in the emulator), allows the player to pass through walls. The cheat for No Clipping depends on the game: in original Doom, it's <strong>IDSPISPOPD</strong>.</p>
+            </div>
+            <div class="list-group-item">
+                <h5 class="mb-1">IDSPISPOPD</h5>
+                <p class="mb-1">No Clipping Mode (without the special effects) - In the original Doom, seems to be the only cheat code to let players to pass through walls. This restriction only seems to apply to the emulator or the <code>.jsdos</code> bundle used.</p>
+            </div>
+            <div class="list-group-item">
+                <h5 class="mb-1">IDFA</h5>
+                <p class="mb-1">All Weapons and Full Ammo - Gives all weapons and full ammo, but no keys.</p>
+            </div>
+            <div class="list-group-item">
+                <h5 class="mb-1">IDBEHOLD</h5>
+                <p class="mb-1">Power-Up Activation - Followed by a letter to activate various power-ups (e.g., IDBEHOLDI for invisibility, IDBEHOLDR for Radiation Suit).</p>
+            </div>
+            <div class="list-group-item">
+                <h5 class="mb-1">IDCLEV</h5>
+                <p class="mb-1">Level Warp - Followed by the map number to warp to a specific level (e.g., IDCLEV10 for Level 10).</p>
+            </div>
+            <div class="list-group-item">
+                <h5 class="mb-1">IDMYPOS</h5>
+                <p class="mb-1">Show Player’s Coordinates - Displays the player’s current coordinates in the game.</p>
+            </div>
+         </div>
+        </div>
+    </div>
+ <noscript>
+  <div style="text-align: center; padding: 20px; background-color: #0a0a0a; color: #f00; font-family: 'Courier New', Courier, monospace; border: 2px dashed #f00; border-radius: 10px; max-width: 500px; margin: 50px auto;">
+    <h2 style="margin: 0; font-size: 1.5rem;"><i class="bi bi-patch-exclamation-fill"></i>🚨 ERROR: JS MISSING 🚨<i class="bi bi-patch-exclamation-fill"></i></h2>
+    <p style="margin: 10px 0; font-size: 1rem;">
+      This is an **emulator for DOOM**. You know, the game that runs on *everything*? Even toasters?  
+    </p>
+    <p style="margin: 10px 0; font-size: 1rem;">
+      But it won’t run here because JavaScript is OFF. Are you trying to bring about the Apocalypse yourself?
+    </p>
+    <p style="margin: 10px 0; font-size: 1rem;">
+      <i class="bi bi-filetype-js"></i> Flip the JS switch, and let’s get DOOM-ing! 🔥
+    </p>
+    <small style="font-size: 0.8rem;">(Or just stare at this box. Your move, Doom Slayer.)</small>
+
+    <p style="margin: 10px 0; font-size: 1rem;">
+      <i class="bi bi-laptop"></i> DOOM only runs if your browser doesn’t think it’s from the *1990s*. Enable JavaScript, and let’s do this.
+    </p>
+    <p style="margin: 10px 0; font-size: 1rem;">
+      <i class="bi bi-person-dash"></i> What’s wrong, Slayer? Too scared to face Doom with JavaScript? Guess you’re more of a *Zombieman*.
+    </p>
+    <p style="margin: 10px 0; font-size: 1rem;">
+      <i class="bi bi-gem"></i> You wouldn’t dare try this in Doom 64, so why try it here without JavaScript? Enable it, and let's *rip and tear*.
+    </p>
+    <p style="margin: 10px 0; font-size: 1rem;">
+      <i class="bi bi-bug"></i> Oh, so you think you can run Doom without JavaScript? You must be one of those demons that *thinks* they can win. 
+    </p>
+    <p style="margin: 10px 0; font-size: 1rem;">
+      <i class="bi bi-caret-right-fill"></i> A Doom Slayer without JavaScript is like a chainsaw without gas. Still cool, but kinda useless. Fix it.
+    </p>
+    <p style="margin: 10px 0; font-size: 1rem;">
+      <i class="bi bi-shield-lock"></i> Don’t leave me hanging, Doom Slayer. Enable JavaScript and let’s get to the *real* demons.
+    </p>
+  </div>
+</noscript>
+<script src="./bootstrap.bundle.min.js"></script>
+<script src="./demons/darkmode-js.min.js"></script>
+<script src="./demons/gh.js"></script>
+<script>
+   function addDarkmodeWidget(){new Darkmode({label:"🌗"}).showWidget()}window.addEventListener("load",addDarkmodeWidget);
+</script>
+</body>
+</html>

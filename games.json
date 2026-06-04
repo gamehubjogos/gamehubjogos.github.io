@@ -17,31 +17,31 @@
   {
     "Name": "Fnaf 1",
     "ImageURL": "img/fnaf1.png",
-    "Link": "https://irv77.github.io/hd_fnaf/1/"
+    "Link": "Fnaf_1/index.html"
   },
   {
     "Name": "Fnaf 2",
     "ImageURL": "img/fnaf2.png",
-    "Link": "https://irv77.github.io/hd_fnaf/2/"
+    "Link": "Fnaf_2/index.html"
   },
   {
     "Name": "Fnaf 3",
     "ImageURL": "img/fnaf3.png",
-    "Link": "https://irv77.github.io/hd_fnaf/3/"
+    "Link": "Fnaf_3/index.html"
   },
   {
     "Name": "Fnaf 4",
     "ImageURL": "img/fnaf4.png",
-    "Link": "https://irv77.github.io/hd_fnaf/4/"
+    "Link": "Fnaf_4/index.html"
   },
   {
     "Name": "Fnaf Sister Location",
     "ImageURL": "img/fnafSL.png",
-    "Link": "https://irv77.github.io/hd_fnaf/sl/"
+    "Link": "Fnaf_Sister_Location/index.html"
   },
   {
     "Name": "Fnaf Ultimate Custom Night",
     "ImageURL": "img/fnafUCN.png",
-    "Link": "https://irv77.github.io/hd_fnaf/ucn/"
+    "Link": "Fnaf_Ultimate_Custom_Night/index.html"
   }
 ]

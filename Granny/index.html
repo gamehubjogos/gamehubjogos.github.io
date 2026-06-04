@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Granny Escape - Fixed Start</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        
+        #gameCanvas {
+            display: block;
+            background: #222;
+        }
+        
+        #startScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        #startScreen h1 {
+            color: #e74c3c;
+            font-size: 48px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255,0,0,0.5);
+        }
+        
+        #startScreen p {
+            color: #fff;
+            font-size: 18px;
+            margin: 10px 0;
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        #startButton {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 24px;
+            margin-top: 40px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        #startButton:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        
+        #debugInfo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div id="debugInfo">Loading game...</div>
+    
+    <div id="startScreen">
+        <h1>ESCAPE GRANNY</h1>
+        <p>You're trapped in Granny's house! Find all the items and escape before she catches you.</p>
+        <p>WASD or Arrow Keys to move</p>
+        <p>SHIFT to sprint (watch your stamina!)</p>
+        <p>E to hide in furniture</p>
+        <button id="startButton">START GAME</button>
+    </div>
+    
+    <script>
+        // Game initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            const debugInfo = document.getElementById('debugInfo');
+            const startScreen = document.getElementById('startScreen');
+            const startButton = document.getElementById('startButton');
+            
+            // Set canvas to fill the window
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            // Initial resize
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Game objects
+            const player = {
+                x: 100,
+                y: 100,
+                radius: 20,
+                color: '#3498db',
+                speed: 5
+            };
+            
+            const granny = {
+                x: 400,
+                y: 400,
+                radius: 30,
+                color: '#e74c3c',
+                speed: 3,
+                direction: 0,
+                turnSpeed: 0.03
+            };
+            
+            // Game state
+            let score = 0;
+            let currentLevel = 1;
+            let items = [];
+            let gameActive = false;
+            let gameStarted = false;
+            const keys = {};
+            
+            // Start game - both button and keyboard will use this
+            function startGame() {
+                gameStarted = true;
+                gameActive = true;
+                startScreen.style.display = 'none';
+                generateLevel(currentLevel);
+                debugInfo.textContent = `Level ${currentLevel}: Find all items and escape! Watch out for Granny!`;
+                
+                // Start game loop if not already running
+                if (!gameLoopRunning) {
+                    gameLoopRunning = true;
+                    requestAnimationFrame(gameLoop);
+                }
+            }
+            
+            // Start button click
+            startButton.addEventListener('click', function() {
+                startGame();
+            });
+            
+            // Keyboard control for starting
+            window.addEventListener('keydown', function(e) {
+                keys[e.key.toLowerCase()] = true;
+                
+                // Start game with space or enter
+                if (!gameStarted && (e.key === ' ' || e.key === 'Enter')) {
+                    startGame();
+                }
+            });
+            
+            window.addEventListener('keyup', function(e) {
+                keys[e.key.toLowerCase()] = false;
+            });
+            
+            // Simple level generation
+            function generateLevel(level) {
+                // Clear previous items
+                items = [];
+                
+                // Generate items based on level
+                const itemCount = 5 + Math.min(10, Math.floor(level / 2));
+                const colors = ['#f1c40f', '#e67e22', '#3498db', '#9b59b6', '#2ecc71'];
+                const types = ['key', 'book', 'photo', 'coin', 'gem'];
+                
+                for (let i = 0; i < itemCount; i++) {
+                    const typeIndex = Math.floor(Math.random() * types.length);
+                    items.push({
+                        x: 100 + Math.random() * (canvas.width - 200),
+                        y: 100 + Math.random() * (canvas.height - 200),
+                        radius: 15,
+                        color: colors[typeIndex],
+                        type: types[typeIndex],
+                        collected: false
+                    });
+                }
+                
+                // Position player and granny
+                player.x = 100;
+                player.y = 100;
+                
+                granny.x = canvas.width - 100;
+                granny.y = canvas.height - 100;
+                granny.speed = 2 + (level * 0.5); // Gets faster with each level
+            }
+            
+            // Game update function
+            function update() {
+                if (!gameActive) return;
+                
+                // Player movement
+                if (keys['w'] || keys['arrowup']) player.y -= player.speed;
+                if (keys['s'] || keys['arrowdown']) player.y += player.speed;
+                if (keys['a'] || keys['arrowleft']) player.x -= player.speed;
+                if (keys['d'] || keys['arrowright']) player.x += player.speed;
+                
+                // Keep player in bounds
+                player.x = Math.max(player.radius, Math.min(canvas.width - player.radius, player.x));
+                player.y = Math.max(player.radius, Math.min(canvas.height - player.radius, player.y));
+                
+                // Granny AI (simple - chase player)
+                const dx = player.x - granny.x;
+                const dy = player.y - granny.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist > 5) {
+                    granny.x += (dx / dist) * granny.speed;
+                    granny.y += (dy / dist) * granny.speed;
+                }
+                
+                // Check item collection
+                items.forEach(item => {
+                    if (!item.collected) {
+                        const itemDist = Math.sqrt(
+                            (player.x - item.x) * (player.x - item.x) + 
+                            (player.y - item.y) * (player.y - item.y)
+                        );
+                        
+                        if (itemDist < player.radius + item.radius) {
+                            item.collected = true;
+                            score += 100;
+                            debugInfo.textContent = `Collected ${item.type}! Score: ${score}`;
+                        }
+                    }
+                });
+                
+                // Check if all items collected
+                const allCollected = items.every(item => item.collected);
+                if (allCollected) {
+                    currentLevel++;
+                    generateLevel(currentLevel);
+                    debugInfo.textContent = `Level ${currentLevel}: Find all items and escape!`;
+                }
+                
+                // Check player-granny collision (game over)
+                if (dist < player.radius + granny.radius) {
+                    gameActive = false;
+                    debugInfo.textContent = `Game Over! Score: ${score}. Refresh to play again.`;
+                }
+            }
+            
+            // Game render function
+            function render() {
+                // Clear canvas
+                ctx.fillStyle = '#222';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw items
+                items.forEach(item => {
+                    if (!item.collected) {
+                        ctx.fillStyle = item.color;
+                        ctx.beginPath();
+                        ctx.arc(item.x, item.y, item.radius, 0, Math.PI * 2);
+                        ctx.fill();
+                        
+                        // Draw item type
+                        ctx.fillStyle = '#fff';
+                        ctx.font = '12px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.fillText(item.type, item.x, item.y + 30);
+                    }
+                });
+                
+                // Draw player
+                ctx.fillStyle = player.color;
+                ctx.beginPath();
+                ctx.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Draw granny
+                ctx.fillStyle = granny.color;
+                ctx.beginPath();
+                ctx.arc(granny.x, granny.y, granny.radius, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Draw score and level
+                ctx.fillStyle = '#fff';
+                ctx.font = '18px Arial';
+                ctx.textAlign = 'left';
+                ctx.fillText(`Score: ${score}`, 20, 30);
+                ctx.fillText(`Level: ${currentLevel}`, 20, 60);
+                
+                // If game over, draw message
+                if (!gameActive && gameStarted) {
+                    ctx.fillStyle = 'rgba(0,0,0,0.7)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.fillStyle = '#e74c3c';
+                    ctx.font = '36px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('GAME OVER', canvas.width/2, canvas.height/2 - 40);
+                    
+                    ctx.fillStyle = '#fff';
+                    ctx.font = '24px Arial';
+                    ctx.fillText(`Score: ${score} - Level: ${currentLevel}`, canvas.width/2, canvas.height/2 + 10);
+                    ctx.fillText('Refresh to play again', canvas.width/2, canvas.height/2 + 50);
+                }
+            }
+            
+            // Game loop flag
+            let gameLoopRunning = false;
+            
+            // Game loop
+            function gameLoop() {
+                update();
+                render();
+                requestAnimationFrame(gameLoop);
+            }
+            
+            // Initialize
+            debugInfo.textContent = "Click 'START GAME' button or press Space/Enter to begin";
+        });
+    </script>
+</body>
+</html>

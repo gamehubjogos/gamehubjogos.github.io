@@ -43,5 +43,10 @@
     "Name": "Fnaf Ultimate Custom Night",
     "ImageURL": "img/fnafUCN.png",
     "Link": "Fnaf_Ultimate_Custom_Night/index.html"
+  },
+  {
+    "Name": "Granny",
+    "ImageURL": "img/granny.png",
+    "Link": "Granny/index.html"
   }
 ]

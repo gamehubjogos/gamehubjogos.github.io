@@ -1,6 +1,6 @@
 # GameHub
 
-Bem-vindo ao GameHub! Um catálogo de jogos clássicos e divertidos hospedados diretamente no GitHub.
+Bem-vindo ao GameHub! O catálogo de jogos mais leve do Github.
 
 ## 🚀 Links de Acesso
 

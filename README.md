@@ -14,7 +14,6 @@ Você pode acessar o GameHub através dos seguintes links:
 Atualmente, o catálogo conta com:
 *   Five Nights at Freddy's (1, 2, 3, 4, Sister Location, Ultimate Custom Night)
 *   Subway Surfers
-*   Granny
 *   Minecraft
 *   Doom
 *   E muito mais!

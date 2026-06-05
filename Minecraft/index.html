@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<link rel="icon" type="favicon/png" href="favicon.png">
 <head>
-    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png"> <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Hub</title>
     <style>
@@ -13,12 +12,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Alterado de height para min-height para evitar bugs em telas pequenas */
             margin: 0;
+            padding: 20px; /* Adicionado um padding para o conteúdo não colar nas bordas da tela */
+            box-sizing: border-box;
         }
         .container {
             display: flex;
             gap: 20px;
+            width: 100%;
+            max-width: 600px; /* Limita a largura máxima do container */
+            justify-content: center;
         }
         a {
             background-color: #00bfff;
@@ -28,9 +32,26 @@
             border-radius: 10px;
             font-weight: bold;
             transition: transform 0.2s;
+            text-align: center; /* Garante que o texto fique centralizado no botão */
+            flex: 1; /* Faz os botões dividirem o espaço igualmente no PC */
         }
         a:hover {
             transform: scale(1.1);
+        }
+
+        /* CONFIGURAÇÃO PARA CELULAR (Telas até 600px de largura) */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column; /* Alinha os botões na vertical */
+                width: 100%; /* O container ocupa a largura disponível */
+            }
+            a {
+                flex: none; /* Desativa a divisão igual do PC */
+                width: auto; /* O botão se adapta ao container */
+            }
+            a:hover {
+                transform: scale(1.05); /* Um toque leve de escala para não quebrar o layout no mobile */
+            }
         }
     </style>
 </head>

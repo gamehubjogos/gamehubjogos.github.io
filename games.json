@@ -53,5 +53,10 @@
     "Name": "Fireboy & Watergirl",
     "ImageURL": "img/fireboyandwatergirl.png",
     "Link": "FireboyAndWatergirl/index.html"
+  },
+  {
+    "Name": "Bad Ice Cream",
+    "ImageURL": "img/badicecream.png",
+    "Link": "BadIceCream/index.html"
   }
 ]

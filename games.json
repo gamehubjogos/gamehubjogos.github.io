@@ -73,5 +73,10 @@
     "Name": "Basket Random",
     "ImageURL": "img/basketrandom.png",
     "Link": "BasketRandom/index.html"
+  },
+  {
+    "Name": "Wrassling",
+    "ImageURL": "img/wrassling.png",
+    "Link": "Wrassling/index.html"
   }
 ]

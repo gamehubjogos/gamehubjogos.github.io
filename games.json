@@ -45,6 +45,11 @@
     "Link": "Fnaf_Ultimate_Custom_Night/index.html"
   },
   {
+    "Name": "Wrassling",
+    "ImageURL": "img/wrassling.png",
+    "Link": "Wrassling/index.html"
+  },
+  {
     "Name": "Fireboy & Watergirl",
     "ImageURL": "img/fireboyandwatergirl.png",
     "Link": "FireboyAndWatergirl/index.html"
@@ -68,10 +73,5 @@
     "Name": "Basket Random",
     "ImageURL": "img/basketrandom.png",
     "Link": "BasketRandom/index.html"
-  },
-  {
-    "Name": "Wrassling",
-    "ImageURL": "img/wrassling.png",
-    "Link": "Wrassling/index.html"
   }
 ]

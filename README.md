@@ -6,5 +6,5 @@ Bem-vindo ao GameHub! O catálogo de jogos mais leve do Github.
 
 Você pode acessar o GameHub através dos seguintes links:
 
-*   **Github:** [https://igu2012.github.io/GameHub/](https://igu2012.github.io/GameHub/)
+*   **Github:** [gamehubjogos.github.io](gamehubjogos.github.io)
 *   **Vercel:** [https://gamehubjogos.vercel.app](https://gamehubjogos.vercel.app)

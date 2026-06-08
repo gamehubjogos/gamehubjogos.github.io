@@ -1,10 +1,8 @@
 let gamesData = [];
 let currentCategory = 'all';
 
-// Definir o ano atual no rodapé
 document.getElementById('footerYear').textContent = `GAMEHUB © ${new Date().getFullYear()}`;
 
-// Carregar dados do games.json
 fetch('games.json')
     .then(response => response.json())
     .then(data => {
@@ -17,14 +15,11 @@ fetch('games.json')
         document.getElementById('gamesContainer').innerHTML = '<p>Erro ao carregar jogos.</p>';
     });
 
-// Inicializar botões de categorias
 function initializeCategories() {
     const categoriesNav = document.getElementById('categoriesNav');
     
-    // Limpar todos os botões
     categoriesNav.innerHTML = '';
     
-    // Criar botão "Todos"
     const todosButton = document.createElement('button');
     todosButton.className = 'category-btn active';
     todosButton.textContent = 'Todos';
@@ -40,7 +35,6 @@ function initializeCategories() {
     
     categoriesNav.appendChild(todosButton);
     
-    // Criar botões para cada categoria
     gamesData.forEach(category => {
         const button = document.createElement('button');
         button.className = 'category-btn';
@@ -59,18 +53,15 @@ function initializeCategories() {
     });
 }
 
-// Renderizar jogos
 function renderGames(categoryId) {
     const container = document.getElementById('gamesContainer');
     container.innerHTML = '';
 
     if (categoryId === 'all') {
-        // Mostrar todas as categorias
         gamesData.forEach(category => {
             renderCategory(container, category);
         });
     } else {
-        // Mostrar apenas uma categoria
         const category = gamesData.find(cat => cat.id === categoryId);
         if (category) {
             renderCategory(container, category);
@@ -78,7 +69,6 @@ function renderGames(categoryId) {
     }
 }
 
-// Renderizar uma categoria específica
 function renderCategory(container, category) {
     const section = document.createElement('div');
     section.className = 'category-section';
@@ -100,7 +90,6 @@ function renderCategory(container, category) {
     container.appendChild(section);
 }
 
-// Criar card de jogo
 function createGameCard(game) {
     const card = document.createElement('div');
     card.className = 'game-card';
@@ -140,7 +129,6 @@ function createGameCard(game) {
     return card;
 }
 
-// Funcionalidade de clique no logo para voltar para "Todos"
 document.getElementById('logoLink').addEventListener('click', () => {
     document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
     const todosBtn = document.querySelector('[data-category="all"]');
@@ -152,7 +140,6 @@ document.getElementById('logoLink').addEventListener('click', () => {
     renderGames('all');
 });
 
-// Funcionalidade de busca
 document.getElementById('searchInput').addEventListener('input', function(e) {
     const searchTerm = e.target.value.toLowerCase();
     const container = document.getElementById('gamesContainer');
@@ -164,7 +151,6 @@ document.getElementById('searchInput').addEventListener('input', function(e) {
 
     container.innerHTML = '';
 
-    // Filtrar jogos de todas as categorias
     gamesData.forEach(category => {
         const filteredGames = category.games.filter(game =>
             game.Name.toLowerCase().includes(searchTerm)
@@ -192,7 +178,6 @@ document.getElementById('searchInput').addEventListener('input', function(e) {
         }
     });
 
-    // Se nenhum jogo foi encontrado
     if (container.children.length === 0) {
         container.innerHTML = '<p style="text-align: center; color: #a3a3a3; padding: 2rem;">Nenhum jogo encontrado.</p>';
     }

@@ -21,10 +21,26 @@ fetch('games.json')
 function initializeCategories() {
     const categoriesNav = document.getElementById('categoriesNav');
     
-    // Limpar botões existentes (exceto o primeiro "Todos")
-    const existingButtons = categoriesNav.querySelectorAll('.category-btn:not([data-category="all"])');
-    existingButtons.forEach(btn => btn.remove());
+    // Limpar todos os botões
+    categoriesNav.innerHTML = '';
     
+    // Criar botão "Todos"
+    const todosButton = document.createElement('button');
+    todosButton.className = 'category-btn active';
+    todosButton.textContent = 'Todos';
+    todosButton.dataset.category = 'all';
+    
+    todosButton.addEventListener('click', () => {
+        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+        todosButton.classList.add('active');
+        currentCategory = 'all';
+        document.getElementById('searchInput').value = '';
+        renderGames('all');
+    });
+    
+    categoriesNav.appendChild(todosButton);
+    
+    // Criar botões para cada categoria
     gamesData.forEach(category => {
         const button = document.createElement('button');
         button.className = 'category-btn';
@@ -35,7 +51,7 @@ function initializeCategories() {
             document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             currentCategory = category.id;
-            document.getElementById('searchInput').value = ''; // Limpar busca
+            document.getElementById('searchInput').value = '';
             renderGames(category.id);
         });
         
@@ -127,9 +143,12 @@ function createGameCard(game) {
 // Funcionalidade de clique no logo para voltar para "Todos"
 document.getElementById('logoLink').addEventListener('click', () => {
     document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-    document.querySelector('[data-category="all"]').classList.add('active');
+    const todosBtn = document.querySelector('[data-category="all"]');
+    if (todosBtn) {
+        todosBtn.classList.add('active');
+    }
     currentCategory = 'all';
-    document.getElementById('searchInput').value = ''; // Limpar busca
+    document.getElementById('searchInput').value = '';
     renderGames('all');
 });
 

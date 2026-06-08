@@ -21,6 +21,10 @@ fetch('games.json')
 function initializeCategories() {
     const categoriesNav = document.getElementById('categoriesNav');
     
+    // Limpar botões existentes (exceto o primeiro "Todos")
+    const existingButtons = categoriesNav.querySelectorAll('.category-btn:not([data-category="all"])');
+    existingButtons.forEach(btn => btn.remove());
+    
     gamesData.forEach(category => {
         const button = document.createElement('button');
         button.className = 'category-btn';
@@ -31,6 +35,7 @@ function initializeCategories() {
             document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             currentCategory = category.id;
+            document.getElementById('searchInput').value = ''; // Limpar busca
             renderGames(category.id);
         });
         
@@ -118,6 +123,15 @@ function createGameCard(game) {
 
     return card;
 }
+
+// Funcionalidade de clique no logo para voltar para "Todos"
+document.getElementById('logoLink').addEventListener('click', () => {
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('[data-category="all"]').classList.add('active');
+    currentCategory = 'all';
+    document.getElementById('searchInput').value = ''; // Limpar busca
+    renderGames('all');
+});
 
 // Funcionalidade de busca
 document.getElementById('searchInput').addEventListener('input', function(e) {

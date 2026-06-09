@@ -107,6 +107,11 @@
           "Name": "Minecraft",
           "ImageURL": "img/minecraft.png",
           "Link": "Minecraft/index.html"
+        },
+        {
+          "Name": "Bloxorz",
+          "ImageURL": "img/bloxorz.png",
+          "Link": "Bloxorz/index.html"
         }
       ]
     }

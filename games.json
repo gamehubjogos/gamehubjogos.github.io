@@ -23,6 +23,11 @@
           "Name": "Level Devil",
           "ImageURL": "img/leveldevil.png",
           "Link": "LevelDevil/index.html"
+        },
+        {
+          "Name": "Henry Stickmin: Breaking the Bank",
+          "ImageURL": "img/henrystickminbreakingthebank.png",
+          "Link": "HenryStickminBreakingTheBank/index.html"
         }
       ]
     },

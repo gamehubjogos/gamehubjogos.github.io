@@ -2,7 +2,7 @@
   "categories": [
     {
       "id": "action",
-      "name": "A\u00e7\u00e3o",
+      "name": "Ação",
       "games": [
         {
           "Name": "Subway Surfers",
@@ -23,11 +23,6 @@
           "Name": "Level Devil",
           "ImageURL": "img/leveldevil.png",
           "Link": "LevelDevil/index.html"
-        },
-        {
-          "Name": "Henry Stickmin: Breaking the Bank",
-          "ImageURL": "img/henrystickminbreakingthebank.png",
-          "Link": "HenryStickminBreakingTheBank/index.html"
         }
       ]
     },
@@ -88,11 +83,6 @@
       "name": "2 Jogadores",
       "games": [
         {
-          "Name": "Fireboy & Watergirl",
-          "ImageURL": "img/fireboyandwatergirl.png",
-          "Link": "FireboyAndWatergirl/index.html"
-        },
-        {
           "Name": "Wrassling",
           "ImageURL": "img/wrassling.png",
           "Link": "Wrassling/index.html"
@@ -112,16 +102,6 @@
           "Name": "Minecraft",
           "ImageURL": "img/minecraft.png",
           "Link": "Minecraft/index.html"
-        },
-        {
-          "Name": "Bloxorz",
-          "ImageURL": "img/bloxorz.png",
-          "Link": "Bloxorz/index.html"
-        },
-        {
-          "Name": "Duck Life 1",
-          "ImageURL": "img/ducklife1.png",
-          "Link": "DuckLife1/index.html"
         }
       ]
     },
@@ -130,9 +110,40 @@
       "name": "Flash",
       "games": [
         {
+          "Name": "Duck Life 1",
+          "ImageURL": "img/ducklife1.png",
+          "Link": "DuckLife1/index.html"
+        },
+        {
+          "Name": "Duck Life 2",
+          "ImageURL": "img/ducklife2.png",
+          "Link": "DuckLife2/index.html"
+        },
+        {
+          "Name": "Henry Stickmin: Breaking the Bank",
+          "ImageURL": "img/henrystickminbreakingthebank.png",
+          "Link": "HenryStickminBreakingTheBank/index.html"
+        },
+        {
           "Name": "The Right Mix",
           "ImageURL": "img/therightmix.png",
           "Link": "TheRightMix/index.html"
+        }
+      ]
+    },
+    {
+      "id": "puzzle",
+      "name": "Puzzle",
+      "games": [
+        {
+          "Name": "Fireboy & Watergirl",
+          "ImageURL": "img/fireboyandwatergirl.png",
+          "Link": "FireboyAndWatergirl/index.html"
+        },
+        {
+          "Name": "Bloxorz",
+          "ImageURL": "img/bloxorz.png",
+          "Link": "Bloxorz/index.html"
         }
       ]
     }

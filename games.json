@@ -2,7 +2,7 @@
   "categories": [
     {
       "id": "action",
-      "name": "Ação",
+      "name": "A\u00e7\u00e3o",
       "games": [
         {
           "Name": "Subway Surfers",
@@ -122,6 +122,17 @@
           "Name": "Duck Life 1",
           "ImageURL": "img/ducklife1.png",
           "Link": "DuckLife1/index.html"
+        }
+      ]
+    },
+    {
+      "id": "flash",
+      "name": "Flash",
+      "games": [
+        {
+          "Name": "The Right Mix",
+          "ImageURL": "img/therightmix.png",
+          "Link": "TheRightMix/index.html"
         }
       ]
     }

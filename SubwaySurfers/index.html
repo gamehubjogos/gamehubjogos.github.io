@@ -5,6 +5,53 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Subway Surfers</title>
+    <script>
+        // WASD Support
+        window.addEventListener('keydown', function(e) {
+            const keyMap = {
+                'w': 'ArrowUp',
+                'a': 'ArrowLeft',
+                's': 'ArrowDown',
+                'd': 'ArrowRight',
+                'W': 'ArrowUp',
+                'A': 'ArrowLeft',
+                'S': 'ArrowDown',
+                'D': 'ArrowRight'
+            };
+            if (keyMap[e.key]) {
+                const target = document.querySelector('canvas') || window;
+                target.dispatchEvent(new KeyboardEvent('keydown', {
+                    key: keyMap[e.key],
+                    code: keyMap[e.key],
+                    keyCode: keyMap[e.key] === 'ArrowUp' ? 38 : keyMap[e.key] === 'ArrowLeft' ? 37 : keyMap[e.key] === 'ArrowDown' ? 40 : 39,
+                    which: keyMap[e.key] === 'ArrowUp' ? 38 : keyMap[e.key] === 'ArrowLeft' ? 37 : keyMap[e.key] === 'ArrowDown' ? 40 : 39,
+                    bubbles: true
+                }));
+            }
+        });
+        window.addEventListener('keyup', function(e) {
+            const keyMap = {
+                'w': 'ArrowUp',
+                'a': 'ArrowLeft',
+                's': 'ArrowDown',
+                'd': 'ArrowRight',
+                'W': 'ArrowUp',
+                'A': 'ArrowLeft',
+                'S': 'ArrowDown',
+                'D': 'ArrowRight'
+            };
+            if (keyMap[e.key]) {
+                const target = document.querySelector('canvas') || window;
+                target.dispatchEvent(new KeyboardEvent('keyup', {
+                    key: keyMap[e.key],
+                    code: keyMap[e.key],
+                    keyCode: keyMap[e.key] === 'ArrowUp' ? 38 : keyMap[e.key] === 'ArrowLeft' ? 37 : keyMap[e.key] === 'ArrowDown' ? 40 : 39,
+                    which: keyMap[e.key] === 'ArrowUp' ? 38 : keyMap[e.key] === 'ArrowLeft' ? 37 : keyMap[e.key] === 'ArrowDown' ? 40 : 39,
+                    bubbles: true
+                }));
+            }
+        });
+    </script>
     <script type="text/javascript">
         document.domain = '4399.com'
     </script>

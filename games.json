@@ -28,6 +28,11 @@
           "Name": "Friday Night Funkin",
           "ImageURL": "img/funkin.png",
           "Link": "Funkin/index.html"
+        },
+        {
+          "Name": "Geometry Dash",
+          "ImageURL": "img/geometrydash.png",
+          "Link": "GeometryDash/index.html"
         }
       ]
     },

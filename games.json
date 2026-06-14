@@ -33,6 +33,11 @@
           "Name": "Geometry Dash",
           "ImageURL": "img/geometrydash.png",
           "Link": "GeometryDash/index.html"
+        },
+        {
+          "Name": "Happy Wheels",
+          "ImageURL": "img/happywheels.png",
+          "Link": "HappyWheels/index.html"
         }
       ]
     },

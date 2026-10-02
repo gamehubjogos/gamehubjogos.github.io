@@ -23,6 +23,7 @@
     Peak: 'gamefiles03',
     SpaceflightSimulator: 'gamefiles03',
     KerbalSpaceProgram: 'gamefiles03',
+    GangBeasts: 'gamefiles03',
     PizzaTower: 'gamefiles03',
     HollowKnightSilksong: 'gamefiles01', Cuphead: 'gamefiles01', Balatro: 'gamefiles01',
     CookieClicker: 'gamefiles01', BaldiRemastered: 'gamefiles01', Antonblast: 'gamefiles03', Brotato: 'gamefiles03', ButchersAround: 'gamefiles03', Slendytubbies: 'gamefiles03', Slendytubbies2: 'gamefiles03', Slendytubbies2D: 'gamefiles03', SoccerRandom: 'gamefiles01',

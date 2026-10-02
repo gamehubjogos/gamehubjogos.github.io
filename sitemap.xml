@@ -109,6 +109,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://gamehubjogos.github.io/play.html?game=GangBeasts</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://gamehubjogos.github.io/play.html?game=Fnaf_1</loc>
     <priority>0.8</priority>
   </url>

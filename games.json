@@ -192,6 +192,14 @@
           "Link": "KerbalSpaceProgram/",
           "MobileFriendly": false,
           "Orientation": "landscape"
+        },
+        {
+          "Name": "Gang Beasts",
+          "ImageURL": "img/GangBeasts.jpg",
+          "Link": "GangBeasts/",
+          "MobileFriendly": false,
+          "Favicon": "TemplateData/favicon.ico",
+          "Orientation": "landscape"
         }
       ]
     },

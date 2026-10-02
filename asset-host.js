@@ -120,6 +120,11 @@
   }
 
   function resolveGameAssetUrl(link, relativePath) {
+    // Gang Beasts is already available on Render while its Vercel deployment
+    // is still building; keep the game playable on the Vercel portal too.
+    if (gameKey(link) === 'GangBeasts' && currentProvider() === 'vercel') {
+      return Promise.resolve(assetUrlFor('render', link, relativePath));
+    }
     return resolveProvider(repositoryFor(link)).then(function (provider) {
       return assetUrlFor(provider, link, relativePath);
     });

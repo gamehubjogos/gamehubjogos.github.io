@@ -35,7 +35,11 @@ for key in games:
         '  </url>',
     ])
 lines.append('</urlset>')
-Path("sitemap_github.xml").write_text("\n".join(lines) + "\n", encoding="utf-8")
+content = "\n".join(lines) + "\n"
+# sitemap.xml is the canonical name submitted to search engines. Keep the
+# historical filename as an alias so existing references continue to work.
+for filename in ("sitemap.xml", "sitemap_github.xml"):
+    Path(filename).write_text(content, encoding="utf-8")
 print(f"Generated {len(games)} game URLs plus the homepage.")
 print("First URL:", f"{BASE_URL}/play.html?game={quote(games[0], safe='')}")
 print("Last URL:", f"{BASE_URL}/play.html?game={quote(games[-1], safe='')}")

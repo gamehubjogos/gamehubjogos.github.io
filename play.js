@@ -273,7 +273,7 @@
         : url;
       frame.src = frameUrl;
       if (activeGameKey === 'Minecraft' && path !== 'index.html') {
-        const versionLabel = path === 'Eaglercraft1262/index.html' ? 'Eaglercraft 1.26.2' : path.replace('.html', '');
+        const versionLabel = path === 'Eaglercraft1262/index.html' ? 'Minecraft 1.26.2' : path.replace('.html', '');
         titleEl.textContent = currentGame.Name + ' ' + versionLabel;
         document.title = titleEl.textContent + ' - GameHub';
       }

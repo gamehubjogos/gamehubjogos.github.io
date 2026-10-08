@@ -122,7 +122,7 @@
   function resolveGameAssetUrl(link, relativePath) {
     // These large ports are available on Render while their Vercel deployments
     // are still building; keep them playable on the Vercel portal too.
-    if ((gameKey(link) === 'GangBeasts' || gameKey(link) === 'SonicMania') && currentProvider() === 'vercel') {
+    if (['GangBeasts', 'SonicMania', 'Eaglercraft1262', 'Granny3', 'StardewValley'].includes(gameKey(link)) && currentProvider() === 'vercel') {
       return Promise.resolve(assetUrlFor('render', link, relativePath));
     }
     return resolveProvider(repositoryFor(link)).then(function (provider) {

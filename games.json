@@ -200,6 +200,14 @@
           "MobileFriendly": false,
           "Favicon": "TemplateData/favicon.ico",
           "Orientation": "landscape"
+        },
+        {
+          "Name": "Eaglercraft 1.26.2",
+          "ImageURL": "Eaglercraft1262/card.png",
+          "Link": "Eaglercraft1262/",
+          "MobileFriendly": true,
+          "Favicon": "favicon.png",
+          "Orientation": "landscape"
         }
       ]
     },
@@ -261,6 +269,14 @@
           "ImageURL": "Granny2/card.webp",
           "Link": "Granny2/",
           "MobileFriendly": false,
+          "Orientation": "landscape"
+        },
+        {
+          "Name": "Granny 3",
+          "ImageURL": "Granny3/card.webp",
+          "Link": "Granny3/",
+          "MobileFriendly": false,
+          "Favicon": "favicon.png",
           "Orientation": "landscape"
         },
         {
@@ -553,6 +569,14 @@
           "Name": "PEAK",
           "ImageURL": "img/Peak.png",
           "Link": "Peak/",
+          "MobileFriendly": false,
+          "Favicon": "favicon.png",
+          "Orientation": "landscape"
+        },
+        {
+          "Name": "Stardew Valley",
+          "ImageURL": "StardewValley/card.webp",
+          "Link": "StardewValley/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
           "Orientation": "landscape"

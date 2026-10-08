@@ -22,7 +22,7 @@
   const repositoryByGame = {
     Peak: 'gamefiles03',
     SpaceflightSimulator: 'gamefiles03',
-    KerbalSpaceProgram: 'gamefiles03', Eaglercraft1262: 'gamefiles03', StardewValley: 'gamefiles03', Granny3: 'gamefiles03',
+    KerbalSpaceProgram: 'gamefiles03', StardewValley: 'gamefiles03', Granny3: 'gamefiles03',
     GangBeasts: 'gamefiles03',
     PizzaTower: 'gamefiles03',
     HollowKnightSilksong: 'gamefiles01', Cuphead: 'gamefiles01', Balatro: 'gamefiles01',

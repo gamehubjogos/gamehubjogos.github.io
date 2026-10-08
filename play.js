@@ -216,7 +216,7 @@
 
   function versionPathForGame(game) {
     if (keyFor(game.Link) !== 'Minecraft') return 'index.html';
-    const allowed = new Set(['1.5.2.html', '1.8.8.html', '1.12.2.html']);
+    const allowed = new Set(['1.5.2.html', '1.8.8.html', '1.12.2.html', 'Eaglercraft1262/index.html']);
     return allowed.has(selectedVersion) ? selectedVersion : '';
   }
 
@@ -273,7 +273,8 @@
         : url;
       frame.src = frameUrl;
       if (activeGameKey === 'Minecraft' && path !== 'index.html') {
-        titleEl.textContent = currentGame.Name + ' ' + path.replace('.html', '');
+        const versionLabel = path === 'Eaglercraft1262/index.html' ? 'Eaglercraft 1.26.2' : path.replace('.html', '');
+        titleEl.textContent = currentGame.Name + ' ' + versionLabel;
         document.title = titleEl.textContent + ' - GameHub';
       }
     }).catch(function () { showError('Unable to load the game.'); });

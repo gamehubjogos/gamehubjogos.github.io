@@ -200,14 +200,6 @@
           "MobileFriendly": false,
           "Favicon": "TemplateData/favicon.ico",
           "Orientation": "landscape"
-        },
-        {
-          "Name": "Eaglercraft 1.26.2",
-          "ImageURL": "Eaglercraft1262/card.png",
-          "Link": "Eaglercraft1262/",
-          "MobileFriendly": true,
-          "Favicon": "favicon.png",
-          "Orientation": "landscape"
         }
       ]
     },

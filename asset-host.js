@@ -5,25 +5,28 @@
     vercel: {
       gamefiles01: 'https://gamefiles01.vercel.app',
       gamefiles02: 'https://gamefiles02.vercel.app',
-      gamefiles03: 'https://gamefiles03.vercel.app'
+      gamefiles03: 'https://gamefiles03.vercel.app',
+      gamefiles04: 'https://gamefiles04.vercel.app'
     },
     render: {
       gamefiles01: 'https://gamefiles01.onrender.com',
       gamefiles02: 'https://gamefiles02.onrender.com',
-      gamefiles03: 'https://gamefiles03.onrender.com'
+      gamefiles03: 'https://gamefiles03.onrender.com',
+      gamefiles04: 'https://gamefiles04.onrender.com'
     },
     githubPages: {
       gamefiles01: 'https://gamehubjogosfiles.github.io/gamefiles01',
       gamefiles02: 'https://gamehubjogosfiles.github.io/gamefiles02',
-      gamefiles03: 'https://gamehubjogosfiles.github.io/gamefiles03'
+      gamefiles03: 'https://gamehubjogosfiles.github.io/gamefiles03',
+      gamefiles04: 'https://gamehubjogosfiles.github.io/gamefiles04'
     }
   };
 
   const repositoryByGame = {
-    Peak: 'gamefiles03',
+    Peak: 'gamefiles04',
     SpaceflightSimulator: 'gamefiles03',
-    KerbalSpaceProgram: 'gamefiles03', StardewValley: 'gamefiles03', Granny3: 'gamefiles03',
-    GangBeasts: 'gamefiles03',
+    KerbalSpaceProgram: 'gamefiles04', StardewValley: 'gamefiles04', Granny3: 'gamefiles04',
+    GangBeasts: 'gamefiles04',
     PizzaTower: 'gamefiles03',
     HollowKnightSilksong: 'gamefiles01', Cuphead: 'gamefiles01', Balatro: 'gamefiles01',
     CookieClicker: 'gamefiles01', BaldiRemastered: 'gamefiles01', Antonblast: 'gamefiles03', Brotato: 'gamefiles03', ButchersAround: 'gamefiles03', Slendytubbies: 'gamefiles03', Slendytubbies2: 'gamefiles03', Slendytubbies2D: 'gamefiles03', SoccerRandom: 'gamefiles01',
@@ -52,7 +55,8 @@
   const healthPathByRepository = {
     gamefiles01: 'HollowKnightSilksong/index.html',
     gamefiles02: 'HollowKnight/index.html',
-    gamefiles03: 'Granny2/index.html'
+    gamefiles03: 'Granny2/index.html',
+    gamefiles04: 'Peak/index.html'
   };
 
   function currentProvider() {

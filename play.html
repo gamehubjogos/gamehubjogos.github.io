@@ -41,6 +41,7 @@
     .minecraft-chooser { position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 32px; background: rgba(0,0,0,.68); backdrop-filter: blur(12px); pointer-events: auto; }
     .minecraft-chooser[hidden] { display: none; }
     .version-chooser-title { flex-basis: 100%; margin-bottom: 2px; color: #fff; font-family: "Arial Black", Inter, sans-serif; font-size: clamp(1rem, 2.4vw, 1.45rem); letter-spacing: .01em; text-align: center; }
+    .version-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; width: 100%; }
     .version-button { min-width: 112px; padding: 13px 18px; border: 1px solid #3a3a3a; border-radius: 12px; color: #fff; background: #151515; box-shadow: 0 8px 20px rgba(0,0,0,.28); cursor: pointer; font: inherit; font-size: .9rem; font-weight: 800; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
     .version-button:hover, .version-button:focus-visible { border-color: #fff; background: #252525; outline: none; transform: translateY(-2px); }
     .version-button:active { transform: translateY(0) scale(.97); }
@@ -86,9 +87,10 @@
       .game-showcase .mobile-gate.is-minecraft-chooser { justify-content: flex-start; gap: 10px; padding: 18px 14px; overflow-y: auto; }
       .game-showcase .mobile-gate.is-minecraft-chooser .mobile-gate-image { width: min(38vw, 145px); height: min(38vw, 145px); }
       .game-showcase .mobile-gate.is-minecraft-chooser .mobile-gate-message { display: none; }
-      .game-showcase .mobile-gate.is-minecraft-chooser .minecraft-chooser { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-      .game-showcase .mobile-gate.is-minecraft-chooser .version-chooser-title { grid-column: 1 / -1; font-size: .88rem; }
-      .game-showcase .mobile-gate.is-minecraft-chooser .version-button { min-width: 0; padding: 10px 4px; font-size: .76rem; }
+      .game-showcase .mobile-gate.is-minecraft-chooser .minecraft-chooser { display: block; overflow: hidden; }
+      .game-showcase .mobile-gate.is-minecraft-chooser .version-chooser-title { font-size: .88rem; }
+      .game-showcase .mobile-gate.is-minecraft-chooser .version-options { flex-wrap: nowrap; justify-content: flex-start; gap: 8px; overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x mandatory; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+      .game-showcase .mobile-gate.is-minecraft-chooser .version-button { flex: 0 0 min(29vw, 112px); min-width: 0; padding: 10px 4px; font-size: .76rem; scroll-snap-align: start; }
       .game-showcase.is-fullscreen-mobile .mobile-gate { display: none; }
       .game-showcase.is-fullscreen-mobile .game-stage.is-active { display: block; }
       .game-showcase:not(.is-fullscreen-mobile) .game-stage { display: none !important; }
@@ -118,10 +120,12 @@
           <button id="playButton" class="play-button" type="button"><span class="play-symbol" aria-hidden="true">▶</span> Play</button>
           <div id="minecraftChooser" class="minecraft-chooser" hidden aria-label="Choose a Minecraft version">
             <div class="version-chooser-title">Choose your Minecraft version</div>
-            <button class="version-button" type="button" data-minecraft-version="1.5.2.html">1.5.2</button>
-            <button class="version-button" type="button" data-minecraft-version="1.8.8.html">1.8.8</button>
-            <button class="version-button" type="button" data-minecraft-version="1.12.2.html">1.12.2</button>
-            <button class="version-button" type="button" data-minecraft-version="Eaglercraft1262/index.html">Minecraft 1.26.2</button>
+            <div class="version-options">
+              <button class="version-button" type="button" data-minecraft-version="1.5.2.html">1.5.2</button>
+              <button class="version-button" type="button" data-minecraft-version="1.8.8.html">1.8.8</button>
+              <button class="version-button" type="button" data-minecraft-version="1.12.2.html">1.12.2</button>
+              <button class="version-button" type="button" data-minecraft-version="1.26.2.html">1.26.2</button>
+            </div>
           </div>
         </div>
       </div>
@@ -131,10 +135,12 @@
         <button id="mobilePlayButton" class="play-button" type="button"><span class="play-symbol" aria-hidden="true">▶</span> Play</button>
                   <div id="mobileMinecraftChooser" class="minecraft-chooser" hidden aria-label="Choose a Minecraft version on mobile">
           <div class="version-chooser-title">Choose your Minecraft version</div>
-          <button class="version-button" type="button" data-minecraft-version="1.5.2.html">1.5.2</button>
-          <button class="version-button" type="button" data-minecraft-version="1.8.8.html">1.8.8</button>
-          <button class="version-button" type="button" data-minecraft-version="1.12.2.html">1.12.2</button>
-            <button class="version-button" type="button" data-minecraft-version="Eaglercraft1262/index.html">Minecraft 1.26.2</button>
+          <div class="version-options">
+            <button class="version-button" type="button" data-minecraft-version="1.5.2.html">1.5.2</button>
+            <button class="version-button" type="button" data-minecraft-version="1.8.8.html">1.8.8</button>
+            <button class="version-button" type="button" data-minecraft-version="1.12.2.html">1.12.2</button>
+            <button class="version-button" type="button" data-minecraft-version="1.26.2.html">1.26.2</button>
+          </div>
         </div>
       </div>
       <div id="gameStage" class="game-stage">

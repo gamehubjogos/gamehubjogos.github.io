@@ -14,6 +14,10 @@ The historical/original source repository remains the place where commits are ma
 
 - https://github.com/Igu2012/GameHub
 
+## Scope of game changes
+
+Only modify, repair, replace, or synchronize games that the user explicitly mentions in the current request. Do not alter any other game's files, assets, catalog entry, favicon, card, loader, layout, or behavior as part of the same task. If a shared file must be changed, preserve the behavior and data of all games that were not cited.
+
 ## Publishing workflow
 
 1. Make and test changes in the local checkout of `Igu2012/GameHub`.

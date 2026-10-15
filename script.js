@@ -87,7 +87,7 @@ function renderSection(container, cat) {
             : (window.GameHubAssets ? GameHubAssets.gameAssetUrl(game.Link, game.ImageURL.split('/').pop()) : game.ImageURL);
         card.innerHTML = `
             <div class="game-card-image">
-                <img src="${imagePath}" alt="${game.Name}" loading="lazy" width="600" height="600">
+            <img src="${imagePath}" alt="${game.Name}" loading="lazy" decoding="async" width="480" height="300">
             </div>
             <div class="game-card-content">
                 <span class="game-card-name">${game.Name}</span>

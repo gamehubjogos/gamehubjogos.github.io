@@ -118,7 +118,7 @@
         },
         {
           "Name": "Antonblast",
-          "ImageURL": "img/Antonblast.png",
+          "ImageURL": "img/cards/Antonblast.webp",
           "Link": "Antonblast/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -126,7 +126,7 @@
         },
         {
           "Name": "Brotato",
-          "ImageURL": "img/Brotato.png",
+          "ImageURL": "img/cards/Brotato.webp",
           "Link": "Brotato/",
           "MobileFriendly": false,
           "Favicon": "index.icon.png",
@@ -134,7 +134,7 @@
         },
         {
           "Name": "Sonic CD",
-          "ImageURL": "img/SonicCD.png",
+          "ImageURL": "img/cards/SonicCD.webp",
           "Link": "SonicCD/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -142,7 +142,7 @@
         },
         {
           "Name": "Sonic Mania",
-          "ImageURL": "img/SonicMania.png",
+          "ImageURL": "img/cards/SonicMania.webp",
           "Link": "SonicMania/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -150,7 +150,7 @@
         },
         {
           "Name": "Pizza Tower",
-          "ImageURL": "img/PizzaTower.png",
+          "ImageURL": "img/cards/PizzaTower.webp",
           "Link": "PizzaTower/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -158,7 +158,7 @@
         },
         {
           "Name": "Muddy Heights",
-          "ImageURL": "img/MuddyHeights.png",
+          "ImageURL": "img/cards/MuddyHeights.webp",
           "Link": "MuddyHeights/",
           "MobileFriendly": false,
           "Favicon": "TemplateData/favicon.ico",
@@ -166,7 +166,7 @@
         },
         {
           "Name": "2048",
-          "ImageURL": "img/2048.png",
+          "ImageURL": "img/cards/2048.webp",
           "Link": "2048/",
           "MobileFriendly": true,
           "Favicon": "favicon.ico",
@@ -174,28 +174,28 @@
         },
         {
           "Name": "Ultrakill",
-          "ImageURL": "img/Ultrakill.jpg",
+          "ImageURL": "img/cards/Ultrakill.webp",
           "Link": "Ultrakill/",
           "MobileFriendly": false,
           "Orientation": "landscape"
         },
         {
           "Name": "Karlson",
-          "ImageURL": "img/Karlson.jpg",
+          "ImageURL": "img/cards/Karlson.webp",
           "Link": "Karlson/",
           "MobileFriendly": false,
           "Orientation": "landscape"
         },
         {
           "Name": "Kerbal Space Program",
-          "ImageURL": "img/KerbalSpaceProgram.jpg",
+          "ImageURL": "img/cards/KerbalSpaceProgram.webp",
           "Link": "KerbalSpaceProgram/",
           "MobileFriendly": false,
           "Orientation": "landscape"
         },
         {
           "Name": "Gang Beasts",
-          "ImageURL": "img/GangBeasts.jpg",
+          "ImageURL": "img/cards/GangBeasts.webp",
           "Link": "GangBeasts/",
           "MobileFriendly": false,
           "Favicon": "TemplateData/favicon.ico",
@@ -287,7 +287,7 @@
         },
         {
           "Name": "There's A Butcher Around",
-          "ImageURL": "img/ButchersAround.png",
+          "ImageURL": "img/cards/ButchersAround.webp",
           "Link": "ButchersAround/",
           "MobileFriendly": false,
           "Favicon": "pageicon.png",
@@ -295,7 +295,7 @@
         },
         {
           "Name": "Slendytubbies",
-          "ImageURL": "img/Slendytubbies.png",
+          "ImageURL": "img/cards/Slendytubbies.webp",
           "Link": "Slendytubbies/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -303,7 +303,7 @@
         },
         {
           "Name": "Slendytubbies II",
-          "ImageURL": "img/Slendytubbies2.png",
+          "ImageURL": "img/cards/Slendytubbies2.webp",
           "Link": "Slendytubbies2/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -311,7 +311,7 @@
         },
         {
           "Name": "Slendytubbies 2D",
-          "ImageURL": "img/Slendytubbies2D.png",
+          "ImageURL": "img/cards/Slendytubbies2D.webp",
           "Link": "Slendytubbies2D/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -319,7 +319,7 @@
         },
         {
           "Name": "The Visitor",
-          "ImageURL": "img/TheVisitor.png",
+          "ImageURL": "img/cards/TheVisitor.webp",
           "Link": "TheVisitor/",
           "MobileFriendly": true,
           "Favicon": "cover.png",
@@ -327,7 +327,7 @@
         },
         {
           "Name": "The Visitor Massacre at Camp Happy",
-          "ImageURL": "img/TheVisitorMassacreAtCampHappy.png",
+          "ImageURL": "img/cards/TheVisitorMassacreAtCampHappy.webp",
           "Link": "TheVisitorMassacreAtCampHappy/",
           "MobileFriendly": true,
           "Favicon": "favicon.png",
@@ -335,7 +335,7 @@
         },
         {
           "Name": "The Visitor Returns",
-          "ImageURL": "img/TheVisitorReturns.png",
+          "ImageURL": "img/cards/TheVisitorReturns.webp",
           "Link": "TheVisitorReturns/",
           "MobileFriendly": true,
           "Favicon": "favicon.png",
@@ -398,7 +398,7 @@
         },
         {
           "Name": "Foosball",
-          "ImageURL": "img/foosball.png",
+          "ImageURL": "img/cards/foosball.webp",
           "Link": "Foosball/",
           "MobileFriendly": true,
           "Orientation": "landscape"
@@ -543,7 +543,7 @@
         },
         {
           "Name": "Terraria",
-          "ImageURL": "img/Terraria.png",
+          "ImageURL": "img/cards/Terraria.webp",
           "Link": "Terraria/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -551,7 +551,7 @@
         },
         {
           "Name": "Spaceflight Simulator",
-          "ImageURL": "img/SpaceflightSimulator.png",
+          "ImageURL": "img/cards/SpaceflightSimulator.webp",
           "Link": "SpaceflightSimulator/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",
@@ -559,7 +559,7 @@
         },
         {
           "Name": "PEAK",
-          "ImageURL": "img/Peak.png",
+          "ImageURL": "img/cards/Peak.webp",
           "Link": "Peak/",
           "MobileFriendly": false,
           "Favicon": "favicon.png",

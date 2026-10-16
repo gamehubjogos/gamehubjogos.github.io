@@ -125,9 +125,15 @@
   }
 
   function resolveGameAssetUrl(link, relativePath) {
-    // These large ports are available on Render while their Vercel deployments
-    // are still building; keep them playable on the Vercel portal too.
-    if (['GangBeasts', 'SonicMania', 'Eaglercraft1262', 'Granny3', 'StardewValley'].includes(gameKey(link)) && currentProvider() === 'vercel') {
+    const key = gameKey(link);
+    // The Render copies of these two games currently return 503; use their
+    // working Vercel builds everywhere except GitHub Pages, which serves its own copy.
+    if (['Granny3', 'StardewValley'].includes(key)) {
+      const provider = currentProvider() === 'githubPages' ? 'githubPages' : 'vercel';
+      return Promise.resolve(assetUrlFor(provider, link, relativePath));
+    }
+    // These other large ports remain on Render while their Vercel deployments build.
+    if (['GangBeasts', 'SonicMania', 'Eaglercraft1262'].includes(key) && currentProvider() === 'vercel') {
       return Promise.resolve(assetUrlFor('render', link, relativePath));
     }
     return resolveProvider(repositoryFor(link)).then(function (provider) {

@@ -37,6 +37,29 @@
   let embeddedLoadingMessage = '';
   const embeddedLoadingGames = new Set(['Granny2', 'HollowKnight', 'HollowKnightSilksong', 'Celeste', 'Ultrakill', 'Karlson', 'Skate3']);
 
+  function updateChoiceControls() {
+    const activeKey = currentGame ? keyFor(currentGame.Link) : '';
+    const needsChoice = activeKey === 'Minecraft' || activeKey === 'Skate3';
+    const hasChoice = activeKey === 'Minecraft'
+      ? Boolean(selectedVersion && versionPathForGame(currentGame))
+      : activeKey === 'Skate3' && Boolean(selectedMap && skateMaps.includes(selectedMap));
+    showcase.classList.toggle('has-game-choice', needsChoice);
+    playButton.hidden = false;
+    playButton.disabled = needsChoice && !hasChoice;
+    mobilePlayButton.disabled = needsChoice && !hasChoice;
+    mobilePlayButton.hidden = false;
+    document.querySelectorAll('[data-minecraft-version]').forEach(function (button) {
+      const selected = button.getAttribute('data-minecraft-version') === selectedVersion;
+      button.classList.toggle('is-selected', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+    document.querySelectorAll('[data-skate-map]').forEach(function (button) {
+      const selected = button.getAttribute('data-skate-map') === selectedMap;
+      button.classList.toggle('is-selected', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+  }
+
   function keyFor(link) {
     return GameHubAssets.gameKey(link);
   }
@@ -132,23 +155,23 @@
     document.body.classList.remove('is-playing', 'resume-required');
     mobileGate.hidden = false;
     const isMinecraft = currentGame && keyFor(currentGame.Link) === 'Minecraft';
-    const hasMinecraftChooser = Boolean(isMinecraft && !selectedVersion);
+    const hasMinecraftChooser = Boolean(isMinecraft);
     const isSkate3 = currentGame && keyFor(currentGame.Link) === 'Skate3';
-    const hasSkateChooser = Boolean(isSkate3 && !selectedMap);
+    const hasSkateChooser = Boolean(isSkate3);
     mobileGate.classList.toggle('is-minecraft-chooser', hasMinecraftChooser);
     mobileGate.classList.toggle('is-skate-chooser', hasSkateChooser);
     showcase.classList.toggle('has-minecraft-chooser', hasMinecraftChooser);
     showcase.classList.toggle('has-skate-chooser', hasSkateChooser);
     if (isMinecraft) {
       mobileGateMessage.textContent = selectedVersion ? 'Tap Play to enter fullscreen' : 'Choose a Minecraft version first';
-      mobileMinecraftChooser.hidden = Boolean(selectedVersion);
+      mobileMinecraftChooser.hidden = false;
     }
     if (isSkate3) {
       mobileGateMessage.textContent = selectedMap ? 'Tap Play to enter fullscreen' : 'Choose a Skate 3 park first';
-      mobileSkateChooser.hidden = !hasSkateChooser;
+      mobileSkateChooser.hidden = false;
     }
-    mobilePlayButton.hidden = hasMinecraftChooser || hasSkateChooser;
     mobilePlayButton.textContent = '▶  Play';
+    updateChoiceControls();
     showcase.classList.remove('is-fullscreen-mobile');
     stage.classList.remove('is-active');
   }
@@ -258,14 +281,12 @@
   function chooseSkateMap(name) {
     if (!skateMaps.includes(name)) return;
     selectedMap = name;
-    skateChooser.hidden = true;
-    mobileSkateChooser.hidden = true;
+    skateChooser.hidden = false;
+    mobileSkateChooser.hidden = false;
+    updateChoiceControls();
     if (isMobileDevice()) {
-      mobileGate.classList.remove('is-skate-chooser');
-      showcase.classList.remove('has-skate-chooser');
-      startGame();
-    } else {
-      launchGame();
+      mobileGateMessage.textContent = 'Tap Play to enter fullscreen';
+      mobilePlayButton.hidden = false;
     }
   }
 
@@ -281,10 +302,11 @@
       container.replaceChildren(...skateMaps.map(function (name) {
         const button = document.createElement('button');
         button.type = 'button';
-        button.className = 'version-button skate-map-button';
+        button.className = 'version-button skate-map-button' + (name === selectedMap ? ' is-selected' : '');
         button.textContent = skateMapTitle(name);
         button.setAttribute('aria-label', 'Play ' + skateMapTitle(name));
         button.dataset.skateMap = name;
+        button.setAttribute('aria-pressed', String(name === selectedMap));
         button.addEventListener('click', function (event) {
           event.stopPropagation();
           chooseSkateMap(name);
@@ -292,14 +314,13 @@
         return button;
       }));
     });
-    skateChooser.hidden = Boolean(selectedMap);
+    skateChooser.hidden = false;
     if (isMobileDevice()) {
-      mobileSkateChooser.hidden = Boolean(selectedMap);
-      mobilePlayButton.hidden = !selectedMap;
+      mobileSkateChooser.hidden = false;
+      mobilePlayButton.hidden = false;
       mobileGateMessage.textContent = selectedMap ? 'Tap Play to enter fullscreen' : 'Choose a Skate 3 park first';
-      mobileGate.classList.toggle('is-skate-chooser', !selectedMap);
-      showcase.classList.toggle('has-skate-chooser', !selectedMap);
     }
+    updateChoiceControls();
     return selectedMap;
   }
 
@@ -374,20 +395,25 @@
     if (!currentGame) return;
     const path = versionPathForGame(currentGame);
     if (keyFor(currentGame.Link) === 'Minecraft' && !path) {
-      playButton.hidden = true;
       minecraftChooser.hidden = false;
+      updateChoiceControls();
       return;
     }
     if (keyFor(currentGame.Link) === 'Skate3' && !selectedMap) {
       skateChooser.hidden = false;
+      updateChoiceControls();
       if (isMobileDevice()) {
         mobileSkateChooser.hidden = false;
         mobileGate.classList.add('is-skate-chooser');
         showcase.classList.add('has-skate-chooser');
-        mobilePlayButton.hidden = true;
+        mobilePlayButton.hidden = false;
       }
       return;
     }
+    minecraftChooser.hidden = true;
+    mobileMinecraftChooser.hidden = true;
+    skateChooser.hidden = true;
+    mobileSkateChooser.hidden = true;
     if (isMobileDevice() && !isNativeFullscreenGame()) {
       if (keyFor(currentGame.Link) === 'Minecraft' && !selectedVersion) {
         mobileGateMessage.textContent = 'Choose a Minecraft version first';
@@ -416,7 +442,7 @@
       mobileGateMessage.textContent = 'Choose a Skate 3 park first';
       mobileGate.classList.add('is-skate-chooser');
       showcase.classList.add('has-skate-chooser');
-      mobilePlayButton.hidden = true;
+      mobilePlayButton.hidden = false;
       mobileSkateChooser.hidden = false;
       return;
     }
@@ -424,7 +450,7 @@
       mobileGateMessage.textContent = 'Choose a Minecraft version first';
       mobileGate.classList.add('is-minecraft-chooser');
       showcase.classList.add('has-minecraft-chooser');
-      mobilePlayButton.hidden = true;
+      mobilePlayButton.hidden = false;
       mobileMinecraftChooser.hidden = false;
       return;
     }
@@ -474,24 +500,17 @@
 
   cover.addEventListener('click', function (event) {
     if (event.target.closest('#minecraftChooser, #skateChooser')) return;
-    if (!playButton.hidden) startGame();
+    if (!playButton.hidden && !playButton.disabled) startGame();
   });
   playButton.addEventListener('click', startGame);
   document.querySelectorAll('[data-minecraft-version]').forEach(function (button) {
     button.addEventListener('click', function (event) {
       event.stopPropagation();
       selectedVersion = button.getAttribute('data-minecraft-version');
-      minecraftChooser.hidden = true;
-      mobileMinecraftChooser.hidden = true;
-      mobileGate.classList.remove('is-minecraft-chooser');
-      showcase.classList.remove('has-minecraft-chooser');
+      updateChoiceControls();
       if (isMobileDevice()) {
-        mobileGateMessage.textContent = expectedOrientation() === 'portrait' ? 'Keep your phone upright or tap to play' : 'Rotate your phone or tap to play';
-        mobileStartRequested = true;
-        if (!gameStarted) launchGame();
-        requestMobileFullscreen();
-      } else {
-        startGame();
+        mobileGateMessage.textContent = 'Tap Play to enter fullscreen';
+        mobilePlayButton.hidden = false;
       }
     });
   });
@@ -520,34 +539,37 @@
       setIcon(currentGame);
       loadCover(currentGame);
       const activeGameKey = keyFor(currentGame.Link);
-      minecraftChooser.hidden = activeGameKey !== 'Minecraft' || Boolean(selectedVersion);
-      mobileMinecraftChooser.hidden = activeGameKey !== 'Minecraft' || Boolean(selectedVersion);
-      skateChooser.hidden = activeGameKey !== 'Skate3' || Boolean(selectedMap);
-      mobileSkateChooser.hidden = activeGameKey !== 'Skate3' || Boolean(selectedMap);
+      if (activeGameKey === 'Minecraft' && !versionPathForGame(currentGame)) selectedVersion = '';
+      minecraftChooser.hidden = activeGameKey !== 'Minecraft';
+      mobileMinecraftChooser.hidden = activeGameKey !== 'Minecraft';
+      skateChooser.hidden = activeGameKey !== 'Skate3';
+      mobileSkateChooser.hidden = activeGameKey !== 'Skate3';
+      updateChoiceControls();
       const mobile = isMobileDevice();
       showcase.classList.toggle('is-mobile-device', mobile);
       if (mobile) {
         showMobileGate();
         if (keyFor(currentGame.Link) === 'Skate3') {
-          mobilePlayButton.hidden = true;
           mobileSkateChooser.hidden = false;
           loadSkateMaps().catch(function () {
             mobileGateMessage.textContent = 'Unable to load the Skate 3 park list. Reload the page and try again.';
           });
         }
       } else if (keyFor(currentGame.Link) === 'Skate3') {
-        playButton.hidden = true;
+        playButton.hidden = false;
+        playButton.disabled = true;
         skateChooser.hidden = false;
         loadSkateMaps().then(function () {
-          if (selectedMap) launchGame();
+          updateChoiceControls();
         }).catch(function () {
           cover.style.display = 'none';
           stage.classList.add('is-active');
           showError('Unable to load the Skate 3 park list.');
         });
-      } else if (keyFor(currentGame.Link) === 'Minecraft' && !selectedVersion) {
-        // Minecraft keeps its version selector because its asset folder has no default index.html.
-        playButton.hidden = true;
+      } else if (keyFor(currentGame.Link) === 'Minecraft') {
+        // Minecraft has no default index.html, so choose a version before Play.
+        playButton.hidden = false;
+        updateChoiceControls();
         minecraftChooser.hidden = false;
       } else {
         // Desktop has no intermediate cover or Play menu: load the real game entrypoint immediately.

@@ -35,15 +35,19 @@
     .game-cover-content { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
     .game-cover-content h2, .game-cover-content p { position: absolute; overflow: hidden; width: 1px; height: 1px; clip: rect(0 0 0 0); white-space: nowrap; }
     .play-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 142px; min-height: 56px; border: 2px solid #fff; border-radius: 999px; color: #000; background: #fff; cursor: pointer; pointer-events: auto; font: inherit; font-size: 1rem; font-weight: 900; box-shadow: 0 12px 34px rgba(0,0,0,.55); transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
-    .play-button:hover, .play-button:focus-visible { background: #f1f1f1; box-shadow: 0 16px 40px rgba(0,0,0,.65); outline: none; transform: scale(1.04); }
-    .play-button:active { transform: scale(.97); }
+    .play-button:hover:not(:disabled), .play-button:focus-visible:not(:disabled) { background: #f1f1f1; box-shadow: 0 16px 40px rgba(0,0,0,.65); outline: none; transform: scale(1.04); }
+    .play-button:active:not(:disabled) { transform: scale(.97); }
+    .play-button:disabled { border-color: #424242; color: #858585; background: #292929; box-shadow: none; cursor: not-allowed; filter: none; }
+    .game-showcase.has-game-choice .game-cover-content > .play-button { position: absolute; z-index: 5; left: 50%; bottom: 18px; transform: translateX(-50%); }
+    .game-showcase.has-game-choice .game-cover-content > .play-button:hover:not(:disabled), .game-showcase.has-game-choice .game-cover-content > .play-button:focus-visible:not(:disabled) { transform: translateX(-50%) scale(1.04); }
     .play-symbol { font-size: 1.05rem; }
-    .minecraft-chooser { position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 32px; background: rgba(0,0,0,.68); backdrop-filter: blur(12px); pointer-events: auto; }
+    .minecraft-chooser { position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 32px 32px 104px; background: rgba(0,0,0,.68); backdrop-filter: blur(12px); pointer-events: auto; }
     .minecraft-chooser[hidden] { display: none; }
     .version-chooser-title { flex-basis: 100%; margin-bottom: 2px; color: #fff; font-family: "Arial Black", Inter, sans-serif; font-size: clamp(1rem, 2.4vw, 1.45rem); letter-spacing: .01em; text-align: center; }
     .version-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; width: 100%; }
     .version-button { min-width: 112px; padding: 13px 18px; border: 1px solid #3a3a3a; border-radius: 12px; color: #fff; background: #151515; box-shadow: 0 8px 20px rgba(0,0,0,.28); cursor: pointer; font: inherit; font-size: .9rem; font-weight: 800; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
     .version-button:hover, .version-button:focus-visible { border-color: #fff; background: #252525; outline: none; transform: translateY(-2px); }
+    .version-button.is-selected, .version-button[aria-pressed="true"] { border: 2px solid #fff; background: #353535; box-shadow: 0 0 0 2px rgba(255,255,255,.28), 0 8px 24px rgba(0,0,0,.45); }
     .version-button:active { transform: translateY(0) scale(.97); }
     .skate-map-options { flex-wrap: nowrap; justify-content: flex-start; gap: 12px; width: min(100%, 620px); overflow-x: auto; overflow-y: hidden; padding: 2px 2px 10px; scroll-snap-type: x mandatory; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
     .skate-map-button { flex: 0 0 clamp(160px, 24vw, 190px); min-width: 0; min-height: 62px; white-space: normal; scroll-snap-align: start; }
@@ -175,6 +179,6 @@
     </section>
   </main>
   <script src="asset-host.js"></script>
-  <script src="play.js?v=skate-chooser-v2"></script>
+  <script src="play.js?v=choice-play-v3"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@
   };
 
   const repositoryByGame = {
+    TheSimpsonsHitAndRun: 'gamefiles04', Skate3: 'gamefiles04', PES6: 'gamefiles04',
     Peak: 'gamefiles04',
     SpaceflightSimulator: 'gamefiles03',
     KerbalSpaceProgram: 'gamefiles04', StardewValley: 'gamefiles04', Granny3: 'gamefiles04',

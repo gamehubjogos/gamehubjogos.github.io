@@ -200,6 +200,14 @@
           "MobileFriendly": false,
           "Favicon": "TemplateData/favicon.ico",
           "Orientation": "landscape"
+        },
+        {
+          "Name": "The Simpsons Hit & Run",
+          "ImageURL": "TheSimpsonsHitAndRun/card.webp",
+          "Link": "TheSimpsonsHitAndRun/",
+          "MobileFriendly": false,
+          "Favicon": "favicon.webp",
+          "Orientation": "landscape"
         }
       ]
     },
@@ -408,6 +416,22 @@
           "ImageURL": "ClassicPoolGame/card.webp",
           "Link": "ClassicPoolGame/",
           "MobileFriendly": false,
+          "Orientation": "landscape"
+        },
+        {
+          "Name": "Skate 3",
+          "ImageURL": "Skate3/card.webp",
+          "Link": "Skate3/docs/",
+          "MobileFriendly": false,
+          "Favicon": "favicon.webp",
+          "Orientation": "landscape"
+        },
+        {
+          "Name": "Pro Evolution Soccer 6",
+          "ImageURL": "PES6/card.webp",
+          "Link": "PES6/site/",
+          "MobileFriendly": false,
+          "Favicon": "favicon.webp",
           "Orientation": "landscape"
         }
       ]

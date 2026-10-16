@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gamehub-v4';
+const CACHE_NAME = 'gamehub-v5';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -7,6 +7,7 @@ const APP_SHELL = [
   '/asset-host.js',
   '/play.html',
   '/play.js',
+  '/play.js?v=711790f',
   '/games.json',
   '/manifest.json',
   '/pwa.js',

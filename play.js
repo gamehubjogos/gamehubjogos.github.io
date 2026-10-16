@@ -519,6 +519,11 @@
       subtitleEl.textContent = 'Play instantly in GameHub';
       setIcon(currentGame);
       loadCover(currentGame);
+      const activeGameKey = keyFor(currentGame.Link);
+      minecraftChooser.hidden = activeGameKey !== 'Minecraft' || Boolean(selectedVersion);
+      mobileMinecraftChooser.hidden = activeGameKey !== 'Minecraft' || Boolean(selectedVersion);
+      skateChooser.hidden = activeGameKey !== 'Skate3' || Boolean(selectedMap);
+      mobileSkateChooser.hidden = activeGameKey !== 'Skate3' || Boolean(selectedMap);
       const mobile = isMobileDevice();
       showcase.classList.toggle('is-mobile-device', mobile);
       if (mobile) {

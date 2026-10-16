@@ -204,7 +204,7 @@
         {
           "Name": "The Simpsons Hit & Run",
           "ImageURL": "TheSimpsonsHitAndRun/card.webp",
-          "Link": "TheSimpsonsHitAndRun/",
+          "Link": "TheSimpsonsHitAndRun/docs/",
           "MobileFriendly": false,
           "Favicon": "favicon.webp",
           "Orientation": "landscape"

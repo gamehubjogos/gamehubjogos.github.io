@@ -45,6 +45,9 @@
     .version-button { min-width: 112px; padding: 13px 18px; border: 1px solid #3a3a3a; border-radius: 12px; color: #fff; background: #151515; box-shadow: 0 8px 20px rgba(0,0,0,.28); cursor: pointer; font: inherit; font-size: .9rem; font-weight: 800; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
     .version-button:hover, .version-button:focus-visible { border-color: #fff; background: #252525; outline: none; transform: translateY(-2px); }
     .version-button:active { transform: translateY(0) scale(.97); }
+    .skate-map-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: min(100%, 620px); }
+    .skate-map-button { min-height: 62px; padding: 12px 10px; border-color: #31536d; background: linear-gradient(145deg, #17334b, #101b27); color: #f4f8fb; }
+    .skate-map-button:hover, .skate-map-button:focus-visible { border-color: #9ddaff; background: linear-gradient(145deg, #245779, #142638); }
     .game-stage { position: absolute; inset: 0; display: none; background: #000; }
     .game-stage.is-active { display: block; }
     .mobile-gate { display: none; position: absolute; inset: 0; z-index: 4; align-items: center; justify-content: center; flex-direction: column; gap: 16px; padding: 22px; background: #050505; text-align: center; }
@@ -79,9 +82,11 @@
       .game-page-nav { margin-bottom: 14px; }
       .game-showcase { width: 100%; min-width: 0; height: auto; aspect-ratio: auto; max-height: none; }
       .game-showcase.has-minecraft-chooser { aspect-ratio: auto; min-height: 0; }
+      .game-showcase.has-skate-chooser { aspect-ratio: auto; min-height: 0; }
       .game-showcase .game-cover { display: none; }
       .game-showcase .mobile-gate { position: relative; inset: auto; display: flex; min-height: 0; height: auto; }
       .game-showcase .mobile-gate .minecraft-chooser { position: static; inset: auto; width: 100%; padding: 0; background: transparent; backdrop-filter: none; }
+      .game-showcase .mobile-gate .skate-chooser { position: static; inset: auto; width: 100%; padding: 0; background: transparent; backdrop-filter: none; }
       .game-showcase .mobile-gate .version-chooser-title { margin-top: 2px; font-size: .95rem; }
       .game-showcase .mobile-gate .version-button { min-width: 92px; padding: 11px 12px; font-size: .8rem; }
       .game-showcase .mobile-gate.is-minecraft-chooser { justify-content: flex-start; gap: 10px; padding: 18px 14px; overflow-y: auto; }
@@ -91,6 +96,13 @@
       .game-showcase .mobile-gate.is-minecraft-chooser .version-chooser-title { font-size: .88rem; }
       .game-showcase .mobile-gate.is-minecraft-chooser .version-options { flex-wrap: nowrap; justify-content: flex-start; gap: 8px; overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x mandatory; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
       .game-showcase .mobile-gate.is-minecraft-chooser .version-button { flex: 0 0 min(29vw, 112px); min-width: 0; padding: 10px 4px; font-size: .76rem; scroll-snap-align: start; }
+      .game-showcase .mobile-gate.is-skate-chooser { justify-content: flex-start; gap: 10px; padding: 18px 14px; overflow-y: auto; }
+      .game-showcase .mobile-gate.is-skate-chooser .mobile-gate-image,
+      .game-showcase .mobile-gate.is-skate-chooser .mobile-gate-message { display: none; }
+      .game-showcase .mobile-gate.is-skate-chooser .skate-chooser { display: block; overflow: visible; }
+      .game-showcase .mobile-gate.is-skate-chooser .version-chooser-title { margin-bottom: 12px; font-size: .95rem; }
+      .game-showcase .mobile-gate.is-skate-chooser .skate-map-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; max-height: 55svh; overflow-y: auto; padding: 2px; }
+      .game-showcase .mobile-gate.is-skate-chooser .skate-map-button { min-height: 52px; padding: 8px 5px; font-size: .76rem; }
       .game-showcase.is-fullscreen-mobile .mobile-gate { display: none; }
       .game-showcase.is-fullscreen-mobile .game-stage.is-active { display: block; }
       .game-showcase:not(.is-fullscreen-mobile) .game-stage { display: none !important; }
@@ -127,13 +139,17 @@
               <button class="version-button" type="button" data-minecraft-version="1.26.2.html">1.26.2</button>
             </div>
           </div>
+          <div id="skateChooser" class="minecraft-chooser skate-chooser" hidden aria-label="Choose a Skate 3 park">
+            <div class="version-chooser-title">Choose your Skate 3 park</div>
+            <div id="skateMapOptions" class="skate-map-options"></div>
+          </div>
         </div>
       </div>
       <div id="mobileGate" class="mobile-gate" hidden>
         <img id="mobileGateImage" class="mobile-gate-image" alt="">
         <div id="mobileGateMessage" class="mobile-gate-message">Tap Play to enter fullscreen</div>
         <button id="mobilePlayButton" class="play-button" type="button"><span class="play-symbol" aria-hidden="true">▶</span> Play</button>
-                  <div id="mobileMinecraftChooser" class="minecraft-chooser" hidden aria-label="Choose a Minecraft version on mobile">
+        <div id="mobileMinecraftChooser" class="minecraft-chooser" hidden aria-label="Choose a Minecraft version on mobile">
           <div class="version-chooser-title">Choose your Minecraft version</div>
           <div class="version-options">
             <button class="version-button" type="button" data-minecraft-version="1.5.2.html">1.5.2</button>
@@ -141,6 +157,10 @@
             <button class="version-button" type="button" data-minecraft-version="1.12.2.html">1.12.2</button>
             <button class="version-button" type="button" data-minecraft-version="1.26.2.html">1.26.2</button>
           </div>
+        </div>
+        <div id="mobileSkateChooser" class="minecraft-chooser skate-chooser" hidden aria-label="Choose a Skate 3 park on mobile">
+          <div class="version-chooser-title">Choose your Skate 3 park</div>
+          <div id="mobileSkateMapOptions" class="skate-map-options"></div>
         </div>
       </div>
       <div id="gameStage" class="game-stage">

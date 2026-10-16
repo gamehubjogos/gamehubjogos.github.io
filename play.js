@@ -393,8 +393,10 @@
         }
         status.classList.add('is-hidden');
       }, { once: true });
-      const frameUrl = activeGameKey === 'CookieClicker'
-        ? url + (url.includes('?') ? '&' : '?') + 'gamehub=1'
+      const frameUrl = activeGameKey === 'TheSimpsonsHitAndRun'
+        ? url + (url.includes('?') ? '&' : '?') + 'v=gamehub-docs-entry-1'
+        : activeGameKey === 'CookieClicker'
+          ? url + (url.includes('?') ? '&' : '?') + 'gamehub=1'
         : activeGameKey === 'Skate3'
           ? url + (url.includes('?') ? '&' : '?') + 'map=' + encodeURIComponent(selectedMap)
           : url;

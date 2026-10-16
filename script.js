@@ -97,9 +97,13 @@ function renderSection(container, cat) {
         grid.appendChild(card);
         if (window.GameHubAssets && !String(game.ImageURL || '').startsWith('img/')) {
             const image = card.querySelector('.game-card-image img');
-            GameHubAssets.resolveGameAssetUrl(game.Link, game.ImageURL.split('/').pop())
-                .then(url => { image.src = url; })
-                .catch(() => {});
+            image.addEventListener('error', function () {
+                if (image.dataset.hostFallbackTried) return;
+                image.dataset.hostFallbackTried = 'true';
+                GameHubAssets.resolveGameAssetUrl(game.Link, game.ImageURL.split('/').pop())
+                    .then(url => { if (image.src !== url) image.src = url; })
+                    .catch(() => {});
+            }, { once: true });
         }
     });
     

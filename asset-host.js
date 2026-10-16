@@ -53,6 +53,8 @@
   };
 
   const providerCache = Object.create(null);
+  const providerNames = Object.keys(providerHosts);
+  const probeTimeoutMs = 3500;
   const healthPathByRepository = {
     gamefiles01: 'HollowKnightSilksong/index.html',
     gamefiles02: 'HollowKnight/index.html',
@@ -89,15 +91,29 @@
     return assetUrlFor(currentProvider(), link, relativePath);
   }
 
-  function pingProvider(provider, repository) {
+  function pingProvider(provider, repository, path) {
     const controller = new AbortController();
-    const timeout = global.setTimeout(function () { controller.abort(); }, 5000);
-    return fetch(`${hostFor(provider, repository)}/${healthPathByRepository[repository]}?ping=${Date.now()}`, {
-      method: 'GET',
+    const timeout = global.setTimeout(function () { controller.abort(); }, probeTimeoutMs);
+    const baseUrl = `${hostFor(provider, repository)}/${path}`;
+    const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}__gamehub_probe=${Date.now()}`;
+    return fetch(url, {
+      method: 'HEAD',
       mode: 'cors',
       cache: 'no-store',
       signal: controller.signal
     }).then(function (response) {
+      if (response.status === 405 || response.status === 501) {
+        return fetch(url, {
+          method: 'GET',
+          headers: { Range: 'bytes=0-0' },
+          mode: 'cors',
+          cache: 'no-store',
+          signal: controller.signal
+        }).then(function (fallbackResponse) {
+          if (fallbackResponse.body) fallbackResponse.body.cancel().catch(function () {});
+          return fallbackResponse.ok;
+        });
+      }
       return response.ok;
     }).catch(function () {
       return false;
@@ -106,38 +122,58 @@
     });
   }
 
-  function resolveProvider(repository) {
+  function providersInAttemptOrder(preferred) {
+    const alternatives = providerNames.filter(function (provider) { return provider !== preferred; });
+    for (let index = alternatives.length - 1; index > 0; index -= 1) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [alternatives[index], alternatives[randomIndex]] = [alternatives[randomIndex], alternatives[index]];
+    }
+    return [preferred, ...alternatives];
+  }
+
+  function resolveProviderResult(repository, game, relativePath) {
     const preferred = currentProvider();
-    const cacheKey = `${preferred}:${repository}`;
+    const fallbackPath = healthPathByRepository[repository] || 'index.html';
+    const target = game
+      ? `${gameKey(game)}/${String(relativePath || 'index.html').replace(/^\/+/, '')}`
+      : fallbackPath;
+    const cacheKey = `${preferred}:${repository}:${target}`;
     if (providerCache[cacheKey]) return providerCache[cacheKey];
-    if (preferred === 'githubPages') {
-      providerCache[cacheKey] = Promise.resolve('githubPages');
-      return providerCache[cacheKey];
-    }
-    if (preferred !== 'render') {
-      providerCache[cacheKey] = Promise.resolve('vercel');
-      return providerCache[cacheKey];
-    }
-    providerCache[cacheKey] = pingProvider('render', repository).then(function (healthy) {
-      return healthy ? 'render' : 'vercel';
-    });
+    providerCache[cacheKey] = (async function () {
+      for (const provider of providersInAttemptOrder(preferred)) {
+        if (await pingProvider(provider, repository, target)) return { provider, available: true };
+      }
+      if (global.console && global.console.warn) {
+        global.console.warn(`GameHub: no host responded for ${target}; keeping ${preferred} as the fallback URL.`);
+      }
+      // Preserve the original host as the final URL so its native 404 is visible.
+      return { provider: preferred, available: false };
+    })();
     return providerCache[cacheKey];
   }
 
-  function resolveGameAssetUrl(link, relativePath) {
+  function resolveProvider(repository, game, relativePath) {
+    return resolveProviderResult(repository, game, relativePath).then(function (result) {
+      return result.provider;
+    });
+  }
+
+  function resolveGameAsset(link, relativePath) {
     const key = gameKey(link);
-    // The Render copies of these two games currently return 503; use their
-    // working Vercel builds everywhere except GitHub Pages, which serves its own copy.
-    if (['Granny3', 'StardewValley'].includes(key)) {
-      const provider = currentProvider() === 'githubPages' ? 'githubPages' : 'vercel';
-      return Promise.resolve(assetUrlFor(provider, link, relativePath));
-    }
-    // These other large ports remain on Render while their Vercel deployments build.
-    if (['GangBeasts', 'SonicMania', 'Eaglercraft1262'].includes(key) && currentProvider() === 'vercel') {
-      return Promise.resolve(assetUrlFor('render', link, relativePath));
-    }
-    return resolveProvider(repositoryFor(link)).then(function (provider) {
-      return assetUrlFor(provider, link, relativePath);
+    const repository = repositoryFor(link);
+    const relative = String(relativePath || 'index.html').replace(/^\/+/, '');
+    return resolveProviderResult(repository, key, relative).then(function (result) {
+      return {
+        url: assetUrlFor(result.provider, link, relative),
+        provider: result.provider,
+        available: result.available
+      };
+    });
+  }
+
+  function resolveGameAssetUrl(link, relativePath) {
+    return resolveGameAsset(link, relativePath).then(function (result) {
+      return result.url;
     });
   }
 
@@ -145,5 +181,5 @@
     return `play.html?game=${encodeURIComponent(gameKey(link))}`;
   }
 
-  global.GameHubAssets = { currentProvider, gameKey, repositoryFor, gameAssetUrl, resolveGameAssetUrl, resolveProvider, gamePageUrl, providerHosts, repositoryByGame };
+  global.GameHubAssets = { currentProvider, gameKey, repositoryFor, gameAssetUrl, resolveGameAsset, resolveGameAssetUrl, resolveProvider, gamePageUrl, providerHosts, repositoryByGame };
 })(window);

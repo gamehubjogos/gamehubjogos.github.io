@@ -336,14 +336,28 @@
     }
     const selectedGames = candidates.slice(0, 6);
     if (!selectedGames.length) return;
-    relatedGames.innerHTML = selectedGames.map(function (game) {
-      const filename = String(game.ImageURL || '').split('/').pop();
-      const source = String(game.ImageURL || '').startsWith('img/') ? game.ImageURL : GameHubAssets.gameAssetUrl(game.Link, filename);
+    relatedGames.innerHTML = selectedGames.map(function (game, index) {
+      const imagePath = String(game.ImageURL || '');
+      const filename = imagePath.split('/').pop();
+      const source = imagePath.startsWith('img/') ? imagePath : GameHubAssets.gameAssetUrl(game.Link, filename);
       const href = game.ExternalURL || ('play.html?game=' + encodeURIComponent(keyFor(game.Link)));
       const externalAttrs = game.ExternalURL ? ' target="_blank" rel="noopener noreferrer"' : '';
-      return '<a class="related-card" href="' + href + '"' + externalAttrs + '><img src="' + source + '" alt="' + game.Name.replace(/"/g, '&quot;') + '" loading="lazy"><span>' + game.Name + '</span></a>';
+      return '<a class="related-card" href="' + href + '"' + externalAttrs + '><img data-related-index="' + index + '" src="' + source + '" alt="' + game.Name.replace(/"/g, '&quot;') + '" loading="lazy"><span>' + game.Name + '</span></a>';
     }).join('');
     relatedSection.hidden = false;
+    selectedGames.forEach(function (game, index) {
+      const imagePath = String(game.ImageURL || '');
+      if (imagePath.startsWith('img/')) return;
+      const image = relatedGames.querySelector('[data-related-index="' + index + '"]');
+      if (!image) return;
+      image.addEventListener('error', function () {
+        if (image.dataset.hostFallbackTried) return;
+        image.dataset.hostFallbackTried = 'true';
+        GameHubAssets.resolveGameAssetUrl(game.Link, imagePath.split('/').pop()).then(function (url) {
+          if (image.src !== url) image.src = url;
+        }).catch(function () {});
+      }, { once: true });
+    });
   }
 
   function launchGame() {
@@ -365,9 +379,15 @@
     status.classList.toggle('is-loading', hasEmbeddedLoading);
     gameStarted = true;
     document.body.classList.add('is-playing');
-    GameHubAssets.resolveGameAssetUrl(currentGame.Link, path).then(function (url) {
+    GameHubAssets.resolveGameAsset(currentGame.Link, path).then(function (resolution) {
+      const url = resolution.url;
+      const hostAvailable = resolution.available;
+      if (!hostAvailable) {
+        status.textContent = 'No working host was found. Opening the original host.';
+        status.classList.remove('is-loading');
+      }
       frame.addEventListener('load', function () {
-        if (waitsForGameReady && !frameReady) {
+        if (waitsForGameReady && !frameReady && hostAvailable) {
           status.textContent = embeddedLoadingMessage || 'Loading game files...';
           return;
         }

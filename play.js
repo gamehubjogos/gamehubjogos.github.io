@@ -262,7 +262,6 @@
 
   function versionPathForGame(game) {
     if (keyFor(game.Link) === 'Skate3') return 'docs/index.html';
-    if (keyFor(game.Link) === 'TheSimpsonsHitAndRun') return 'docs/index.html';
     if (keyFor(game.Link) === 'PES6') return 'site/index.html';
     if (keyFor(game.Link) !== 'Minecraft') return 'index.html';
     const allowed = new Set(['1.5.2.html', '1.8.8.html', '1.12.2.html', '1.26.2.html']);
@@ -393,10 +392,8 @@
         }
         status.classList.add('is-hidden');
       }, { once: true });
-      const frameUrl = activeGameKey === 'TheSimpsonsHitAndRun'
-        ? url + (url.includes('?') ? '&' : '?') + 'v=gamehub-docs-entry-1'
-        : activeGameKey === 'CookieClicker'
-          ? url + (url.includes('?') ? '&' : '?') + 'gamehub=1'
+      const frameUrl = activeGameKey === 'CookieClicker'
+        ? url + (url.includes('?') ? '&' : '?') + 'gamehub=1'
         : activeGameKey === 'Skate3'
           ? url + (url.includes('?') ? '&' : '?') + 'map=' + encodeURIComponent(selectedMap)
           : url;

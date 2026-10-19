@@ -200,14 +200,6 @@
           "MobileFriendly": false,
           "Favicon": "TemplateData/favicon.ico",
           "Orientation": "landscape"
-        },
-        {
-          "Name": "The Simpsons Hit & Run",
-          "ImageURL": "TheSimpsonsHitAndRun/card.webp",
-          "Link": "TheSimpsonsHitAndRun/",
-          "MobileFriendly": false,
-          "Favicon": "favicon.webp",
-          "Orientation": "landscape"
         }
       ]
     },

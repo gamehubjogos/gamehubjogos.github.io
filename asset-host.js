@@ -55,7 +55,7 @@
   const providerCache = Object.create(null);
   const providerNames = Object.keys(providerHosts);
   const probeTimeoutMs = 3500;
-  const pes6LoaderMarker = 'pak-chunks.js?v=20261019-gamehub-hosts2';
+  const pes6LoaderMarker = 'pak-chunks.js?v=20261019-pak-progress1';
   const healthPathByRepository = {
     gamefiles01: 'HollowKnightSilksong/index.html',
     gamefiles02: 'HollowKnight/index.html',

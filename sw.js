@@ -4,7 +4,7 @@ const APP_SHELL = [
   '/index.html',
   '/style.css',
   '/script.js?v=host-failover-v1',
-  '/asset-host.js?v=host-failover-v1',
+  '/asset-host.js?v=host-failover-v2',
   '/play.html',
   '/play.js',
   '/play.js?v=choice-play-v5',

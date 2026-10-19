@@ -55,6 +55,7 @@
   const providerCache = Object.create(null);
   const providerNames = Object.keys(providerHosts);
   const probeTimeoutMs = 3500;
+  const pes6LoaderMarker = 'pak-chunks.js?v=20261019-gamehub-hosts2';
   const healthPathByRepository = {
     gamefiles01: 'HollowKnightSilksong/index.html',
     gamefiles02: 'HollowKnight/index.html',
@@ -91,17 +92,26 @@
     return assetUrlFor(currentProvider(), link, relativePath);
   }
 
-  function pingProvider(provider, repository, path) {
+  function pingProvider(provider, repository, path, expectedContent) {
     const controller = new AbortController();
     const timeout = global.setTimeout(function () { controller.abort(); }, probeTimeoutMs);
     const baseUrl = `${hostFor(provider, repository)}/${path}`;
     const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}__gamehub_probe=${Date.now()}`;
     return fetch(url, {
-      method: 'HEAD',
+      method: expectedContent ? 'GET' : 'HEAD',
       mode: 'cors',
       cache: 'no-store',
       signal: controller.signal
     }).then(function (response) {
+      if (expectedContent) {
+        if (!response.ok) {
+          if (response.body) response.body.cancel().catch(function () {});
+          return false;
+        }
+        return response.text().then(function (text) {
+          return text.indexOf(expectedContent) !== -1;
+        });
+      }
       if (response.status === 405 || response.status === 501) {
         return fetch(url, {
           method: 'GET',
@@ -137,11 +147,15 @@
     const target = game
       ? `${gameKey(game)}/${String(relativePath || 'index.html').replace(/^\/+/, '')}`
       : fallbackPath;
+    const expectedContent = gameKey(game) === 'PES6' &&
+      String(relativePath || '').replace(/^\/+/, '') === 'site/index.html'
+      ? pes6LoaderMarker
+      : '';
     const cacheKey = `${preferred}:${repository}:${target}`;
     if (providerCache[cacheKey]) return providerCache[cacheKey];
     providerCache[cacheKey] = (async function () {
       for (const provider of providersInAttemptOrder(preferred)) {
-        if (await pingProvider(provider, repository, target)) return { provider, available: true };
+        if (await pingProvider(provider, repository, target, expectedContent)) return { provider, available: true };
       }
       if (global.console && global.console.warn) {
         global.console.warn(`GameHub: no host responded for ${target}; keeping ${preferred} as the fallback URL.`);

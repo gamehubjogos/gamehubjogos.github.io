@@ -35,7 +35,7 @@
   let gameStarted = false;
   let frameReady = false;
   let embeddedLoadingMessage = '';
-  const embeddedLoadingGames = new Set(['Granny2', 'HollowKnight', 'HollowKnightSilksong', 'Celeste', 'Ultrakill', 'Karlson', 'Skate3', 'PES6', 'SonicMania']);
+  const embeddedLoadingGames = new Set(['Granny2', 'HollowKnight', 'HollowKnightSilksong', 'Celeste', 'Ultrakill', 'Karlson', 'Skate3']);
 
   function updateChoiceControls() {
     const activeKey = currentGame ? keyFor(currentGame.Link) : '';

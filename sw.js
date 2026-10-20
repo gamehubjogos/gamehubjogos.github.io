@@ -7,7 +7,7 @@ const APP_SHELL = [
   '/asset-host.js?v=host-failover-v4',
   '/play.html',
   '/play.js',
-  '/play.js?v=choice-play-v6',
+  '/play.js?v=choice-play-v7',
   '/games.json',
   '/manifest.json',
   '/pwa.js',

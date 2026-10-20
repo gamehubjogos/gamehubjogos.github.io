@@ -66,6 +66,12 @@ The GameHub player provides a default outer loading state for games whose embedd
 
 The shared loading styles are in `gamehub-loading-theme.css`. The outer player loading state is implemented in `play.html` and `play.js` and should remain usable for every game, including games that do not provide a custom loading screen.
 
+### Game-owned loading and choice controls
+
+- Sonic Mania and PES6 must show download and boot progress in their own in-game loading HUDs (`SonicMania/index.html` and `PES6/site/js/loading-progress.js`). Keep both keys out of `embeddedLoadingGames` and do not forward periodic `loading` progress messages to the shared GameHub overlay. The parent may receive `ready` or fatal `error` messages, but progress belongs inside the game iframe.
+- Add a game to `embeddedLoadingGames` only when its own loading UI is missing or unusable and the GameHub overlay is intentionally required. Do not use this list to decide which games get setup choices.
+- GameHub's pre-play choice controls are for game-specific requirements: Skate 3 park selection and Minecraft version selection. Do not show those controls to Sonic Mania, PES6, or games without those choices.
+
 ## Sitemap and URLs
 
 The GitHub Pages sitemap is `sitemap_github.xml` and uses:

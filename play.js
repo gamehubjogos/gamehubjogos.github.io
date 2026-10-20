@@ -35,7 +35,7 @@
   let gameStarted = false;
   let frameReady = false;
   let embeddedLoadingMessage = '';
-  const embeddedLoadingGames = new Set(['Granny2', 'HollowKnight', 'HollowKnightSilksong', 'Celeste', 'Ultrakill', 'Karlson', 'Skate3']);
+  const embeddedLoadingGames = new Set(['Granny2', 'HollowKnight', 'HollowKnightSilksong', 'Celeste', 'Ultrakill', 'Karlson', 'Skate3', 'PES6', 'SonicMania']);
 
   function updateChoiceControls() {
     const activeKey = currentGame ? keyFor(currentGame.Link) : '';
@@ -294,7 +294,11 @@
     const response = await fetch(url, { cache: 'no-cache' });
     if (!response.ok) throw new Error('Unable to load the Skate 3 park list.');
     const pack = await response.json();
-    skateMaps = (pack.maps || []).map(function (map) { return map.name; }).filter(Boolean);
+    // These districts are listed in the pack but the upstream web build says
+    // DownTown, University, and Industrial are not renderable in-browser yet.
+    const unsupportedWebMaps = new Set(['DownTownSkatePark', 'IndustrialSkatePark', 'University']);
+    skateMaps = (pack.maps || []).map(function (map) { return map.name; })
+      .filter(function (name) { return Boolean(name) && !unsupportedWebMaps.has(name); });
     if (!skateMaps.length) throw new Error('The Skate 3 park list is empty.');
     if (!skateMaps.includes(selectedMap)) selectedMap = '';
     [skateMapOptions, mobileSkateMapOptions].forEach(function (container) {

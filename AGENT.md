@@ -36,10 +36,11 @@ Game files are hosted in the separate public asset repositories under the `gameh
 - `https://github.com/gamehubjogosfiles/gamefiles01`
 - `https://github.com/gamehubjogosfiles/gamefiles02`
 - `https://github.com/gamehubjogosfiles/gamefiles03`
+- `https://github.com/gamehubjogosfiles/gamefiles04`
 
 The GameHub catalog and UI live in this repository. Each game entry in `games.json` must have a `Link` matching its folder name in the selected gamefiles repository and an `ImageURL` that is either a local `img/` asset or a self-hosted asset path.
 
-The asset routing table is in `asset-host.js`. It maps game keys to `gamefiles01`, `gamefiles02`, or `gamefiles03` and selects the provider based on the current host:
+The asset routing table is in `asset-host.js`. It maps game keys to `gamefiles01`, `gamefiles02`, `gamefiles03`, or `gamefiles04` and selects the provider based on the current host:
 
 - `gamehubjogos.github.io` uses the GitHub Pages gamefiles hosts.
 - Vercel uses the Vercel gamefiles hosts.

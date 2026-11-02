@@ -117,14 +117,6 @@
           "Orientation": "landscape"
         },
         {
-          "Name": "Antonblast",
-          "ImageURL": "img/cards/Antonblast.webp",
-          "Link": "Antonblast/",
-          "MobileFriendly": false,
-          "Favicon": "favicon.png",
-          "Orientation": "landscape"
-        },
-        {
           "Name": "Brotato",
           "ImageURL": "img/cards/Brotato.webp",
           "Link": "Brotato/",

@@ -30,7 +30,7 @@
     GangBeasts: 'gamefiles04',
     PizzaTower: 'gamefiles03',
     HollowKnightSilksong: 'gamefiles01', Cuphead: 'gamefiles01', Balatro: 'gamefiles01',
-    CookieClicker: 'gamefiles01', BaldiRemastered: 'gamefiles01', Antonblast: 'gamefiles03', Brotato: 'gamefiles03', ButchersAround: 'gamefiles03', Slendytubbies: 'gamefiles03', Slendytubbies2: 'gamefiles03', Slendytubbies2D: 'gamefiles03', SoccerRandom: 'gamefiles01',
+    CookieClicker: 'gamefiles01', BaldiRemastered: 'gamefiles01', Brotato: 'gamefiles03', ButchersAround: 'gamefiles03', Slendytubbies: 'gamefiles03', Slendytubbies2: 'gamefiles03', Slendytubbies2D: 'gamefiles03', SoccerRandom: 'gamefiles01',
     RocketGoal: 'gamefiles01', BasketRandom: 'gamefiles01', VolleyRandom: 'gamefiles01',
     FootballLegends: 'gamefiles01', BoxingRandom: 'gamefiles01', Fnaf_4: 'gamefiles01',
     HollowKnight: 'gamefiles02', Celeste: 'gamefiles02', Fnaf_Sister_Location: 'gamefiles02',

@@ -250,6 +250,20 @@
           "Orientation": "landscape"
         },
         {
+          "Name": "Fnaf World",
+          "ImageURL": "Fnaf_World/card.webp",
+          "Link": "Fnaf_World/",
+          "MobileFriendly": true,
+          "Orientation": "landscape"
+        },
+        {
+          "Name": "Fnaf Pizzeria Simulator",
+          "ImageURL": "Fnaf_Pizzeria_Simulator/card.webp",
+          "Link": "Fnaf_Pizzeria_Simulator/",
+          "MobileFriendly": true,
+          "Orientation": "landscape"
+        },
+        {
           "Name": "Granny 1",
           "ImageURL": "Granny1/card.webp",
           "Link": "Granny1/",

@@ -69,11 +69,11 @@ The shared loading styles are in `gamehub-loading-theme.css`. The outer player l
 
 ### Game-owned loading and choice controls
 
-- Sonic Mania and PES6 must show download and boot progress in their own in-game loading HUDs (`SonicMania/index.html` and `PES6/site/js/loading-progress.js`). Keep both keys out of `embeddedLoadingGames` and do not forward periodic `loading` progress messages to the shared GameHub overlay. The parent may receive `ready` or fatal `error` messages, but progress belongs inside the game iframe.
+- Sonic Mania must show download and boot progress in its own in-game loading HUD (`SonicMania/index.html`). Keep it out of `embeddedLoadingGames` and do not forward periodic `loading` progress messages to the shared GameHub overlay. The parent may receive `ready` or fatal `error` messages, but progress belongs inside the game iframe.
 - For every game, preserve its existing/native loading screen, art, wording, colors, timing, and script order. Do not replace it with a generic GameHub overlay, or defer/reorder startup merely to show a separate overlay, unless the user asks or a verified defect requires it. When multipart assets are necessary, change only the fetch/assembly needed to reconstruct the original filenames; preserve part order and runtime startup behavior.
 - Verify loader fixes by tracing the original boot sequence and checking the actual game reaches its runtime, not only by capturing a progress bar. A progress screenshot alone is not evidence that the game works.
 - Add a game to `embeddedLoadingGames` only when its own loading UI is missing or unusable and the GameHub overlay is intentionally required. Do not use this list to decide which games get setup choices.
-- GameHub's pre-play choice controls are for game-specific requirements: Skate 3 park selection and Minecraft version selection. Do not show those controls to Sonic Mania, PES6, or games without those choices.
+- GameHub's pre-play choice controls are for game-specific requirements: Skate 3 park selection and Minecraft version selection. Do not show those controls to Sonic Mania or games without those choices.
 
 ## Sitemap and URLs
 

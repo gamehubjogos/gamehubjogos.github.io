@@ -423,14 +423,6 @@
           "MobileFriendly": false,
           "Favicon": "favicon.webp",
           "Orientation": "landscape"
-        },
-        {
-          "Name": "Pro Evolution Soccer 6",
-          "ImageURL": "PES6/card.webp",
-          "Link": "PES6/site/",
-          "MobileFriendly": false,
-          "Favicon": "favicon.webp",
-          "Orientation": "landscape"
         }
       ]
     },
